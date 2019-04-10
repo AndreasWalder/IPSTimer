@@ -14,7 +14,6 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();			
-			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $triggerID = $this->GetIDForIdent("Gesetzt");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
