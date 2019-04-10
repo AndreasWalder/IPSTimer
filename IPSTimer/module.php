@@ -25,13 +25,14 @@
 				
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 $this->Stop();	
+				SetValue($this->GetIDForIdent("gesetzt"), false);
                 }	
 				
 			}
 			
 				if (!GetValue($this->GetIDForIdent("gesetzt"))){
-                  SetValue($this->GetIDForIdent("gesetzt"), true);
                   $this->Start();
+				  SetValue($this->GetIDForIdent("gesetzt"), true);
                 }
 				
 				
@@ -59,8 +60,7 @@
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
-        public function Stop(){
-			SetValue($this->GetIDForIdent("gesetzt"), false);
+        public function Stop()
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
         }
