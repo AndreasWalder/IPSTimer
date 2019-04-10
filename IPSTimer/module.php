@@ -63,9 +63,6 @@
             if (!GetValue($this->GetIDForIdent("Active"))){
                 return;
             }
-			if (GetValue($this->GetIDForIdent("InputTriggerID"))){
-				return;
-            }
             $duration = $this->ReadPropertyInteger("Duration");
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
