@@ -104,9 +104,9 @@ class IPSTimer extends IPSModule
 	}
 		
 
-    public function Install() {
+    //public function Install() {
 			 
 
-    }
+    //}
   
  }			
