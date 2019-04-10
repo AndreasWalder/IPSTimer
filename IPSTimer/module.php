@@ -4,24 +4,31 @@
         {
             //Never delete this line!
             parent::Create();
-            $this->RegisterPropertyInteger("OutputID", 0);
+            //$this->RegisterPropertyInteger("InputTriggerID", 0);
             $this->RegisterPropertyInteger("Duration", 1);
+            $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
-			$this->RegisterVariableBoolean("Gesetzt", "IPSTimer gesetzt", "~Switch");
+			$this->RegisterVariableBoolean("gesetzt", "IPSTimer aktiv", "~Switch");
             $this->EnableAction("Active");
         }
         public function ApplyChanges() {
             //Never delete this line!
-            parent::ApplyChanges();			
-            $triggerID = $this->GetIDForIdent("Gesetzt");
+            parent::ApplyChanges();
+			//$triggerID = $this->GetIDForIdent("Gesetzt");
+            $triggerID = $this->ReadPropertyInteger("OutputID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->GetIDForIdent("Gesetzt");
-            if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-                $this->Start();
+            $triggerID = $this->ReadPropertyInteger("OutputID");
+			//$triggerID = $this->GetIDForIdent("Gesetzt");
+            //if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
+				if (!GetValue($this->GetIDForIdent("OutputID"))){
+                return;
             }
+				
+                $this->Start();
+            //}
         }
         public function RequestAction($Ident, $Value) {
             switch($Ident) {
@@ -42,13 +49,11 @@
                 return;
             }
             $duration = $this->ReadPropertyInteger("Duration");
-			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
         public function Stop(){
             $this->SwitchVariable(false);
-			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $this->SetTimerInterval("OffTimer", 0);
         }
         private function SwitchVariable(bool $Value){
