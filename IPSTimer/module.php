@@ -118,11 +118,11 @@ class IPSTimer extends IPSModule
 			IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
 			IPS_SetVariableProfileAssociation($vpn, 0, "%d min", "", 0x00FF00); 
 			IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
-			$vid = CreateVariableByName($IPS_SELF, "Timer", 1); 
+			$vid = $this->CreateVariableByName($IPS_SELF, "Timer", 1); 
 			IPS_SetVariableCustomProfile($vid, $vpn); 
 			IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
 			//Anfangswert setzen vom Timer
-			$this->SetValue($vid, -3); 
+			SetValue($vid, -3); 
 
             /*
 			//Aktiv Variable Anlegen
