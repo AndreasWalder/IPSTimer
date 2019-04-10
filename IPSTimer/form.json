@@ -12,8 +12,8 @@
 	"actions":
 			[
 			    { "type": "Label", "label": "Schaltet die Variable zum probieren" },		
-				{ "type": "Button", "label": "Schalten_ein", "onClick": "IPSDOS_SchaltenEin($id);" },
-				{ "type": "Button", "label": "Schalten_aus", "onClick": "IPSDOS_SchaltenAus($id);" },
+				{ "type": "Button", "label": "SchaltenEin", "onClick": "IPSDOS_SchaltenEin($id);" },
+				{ "type": "Button", "label": "SchaltenAus", "onClick": "IPSDOS_SchaltenAus($id);" },
 				{ "type": "Label", "label": "" },	
 				{ "type": "Label", "label": "Install installiert das Modul:" },		
 				{ "type": "Button", "label": "Install", "onClick": "IPSDOS_Install($id);" }
