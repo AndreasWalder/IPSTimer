@@ -111,47 +111,47 @@ class IPSTimer extends IPSModule
 				IPS_DeleteVariableProfile($vpn);
 			}
 			//Timer Variable anlegen
-			IPS_CreateVariableProfile($vpn, 1); 
-			IPS_SetVariableProfileValues($vpn, 0, $maxTime, 0); 
-			IPS_SetVariableProfileIcon($vpn, "Hourglass"); 
-			IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
-			IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
-			IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
-			$vid = CreateVariableByName($IPS_SELF, "Timer", 1); 
-			IPS_SetVariableCustomProfile($vid, $vpn); 
-			IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
+			$this->IPS_CreateVariableProfile($vpn, 1); 
+			$this->IPS_SetVariableProfileValues($vpn, 0, $maxTime, 0); 
+			$this->IPS_SetVariableProfileIcon($vpn, "Hourglass"); 
+			$this->IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
+			$this->IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
+			$this->IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
+			$vid = $this->CreateVariableByName($IPS_SELF, "Timer", 1); 
+			$this->IPS_SetVariableCustomProfile($vid, $vpn); 
+			$this->IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
 			//Anfangswert setzen vom Timer
-			SetValue($vid, -3); 
+			$this->SetValue($vid, -3); 
 
 			//Aktiv Variable Anlegen
-			$vidAktive = CreateVariableByName($IPS_SELF, "Aktive", 0); 
-			IPS_SetVariableCustomProfile($vidAktive, "~Switch"); 
+			$vidAktive = $this->CreateVariableByName($IPS_SELF, "Aktive", 0); 
+			$this->IPS_SetVariableCustomProfile($vidAktive, "~Switch"); 
 			
 			//Action Script für Aktive anlegen und mit Aktive verknüpfen
-			$ScriptID = IPS_CreateScript(0);
-			IPS_SetName($ScriptID, "Action Script");
-			IPS_SetParent($ScriptID, $vidAktive);
+			$ScriptID = $this->IPS_CreateScript(0);
+			$this->IPS_SetName($ScriptID, "Action Script");
+			$this->IPS_SetParent($ScriptID, $vidAktive);
      
 			$data ="<? \n SetValue(\$_IPS['VARIABLE'],"; 
 			$data .=" \$_IPS['VALUE']);"; 
 			$data .="\n?>"; 
 
-			IPS_SetScriptContent($ScriptID, $data);
-			IPS_SetVariableCustomAction($vidAktive, $ScriptID); 
-			SetValue($vidAktive, false); 
+			$this->IPS_SetScriptContent($ScriptID, $data);
+			$this->IPS_SetVariableCustomAction($vidAktive, $ScriptID); 
+			$this->SetValue($vidAktive, false); 
 
 			//Aktiv Variable Anlegen
-			$vidZeit = CreateVariableByName($IPS_SELF, "Zeit max", 3); 
-			IPS_SetVariableCustomProfile($vidZeit, "Text"); 
-			$ScriptIDZeit = IPS_CreateScript(0);
-			IPS_SetName($ScriptIDZeit, "Action Script");
-			IPS_SetParent($ScriptIDZeit, $vidZeit);
+			$vidZeit = $this->CreateVariableByName($IPS_SELF, "Zeit max", 3); 
+			$this->IPS_SetVariableCustomProfile($vidZeit, "Text"); 
+			$ScriptIDZeit = $this->IPS_CreateScript(0);
+			$this->IPS_SetName($ScriptIDZeit, "Action Script");
+			$this->IPS_SetParent($ScriptIDZeit, $vidZeit);
 			$dataZeit ="<? \n SetValue(\$_IPS['VARIABLE'],"; 
 			$dataZeit .=" \$_IPS['VALUE']);"; 
 			$dataZeit .="\n?>"; 
-			IPS_SetScriptContent($ScriptIDZeit, $dataZeit);
-			IPS_SetVariableCustomAction($vidZeit, $ScriptIDZeit); 
-			SetValueString($vidZeit, $max); 
+			$this->IPS_SetScriptContent($ScriptIDZeit, $dataZeit);
+			$this->IPS_SetVariableCustomAction($vidZeit, $ScriptIDZeit); 
+			$this->SetValueString($vidZeit, $max); 
 			
 			return;
 
