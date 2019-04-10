@@ -98,11 +98,11 @@ class IPSTimer extends IPSModule
 		
 			echo "Install Modul";
 			
-			$vpn = "Timer-Andreas".$name.".".$maxTime; 
+			$vpn = "Modul".$name.".".$maxTime; 
 			
 		   //Dummy anlegen
-		    $DummyObjektID = IPS_GetParent($_IPS['SELF']);
-            IPS_SetName ($DummyObjektID, $name);  //Dummy Instance umbenennen 
+		    //$DummyObjektID = IPS_GetParent($_IPS['SELF']);
+            //IPS_SetName ($DummyObjektID, $name);  //Dummy Instance umbenennen 
 
 			//IPS_SetParent($_IPS['SELF'], $DummyObjektID);
 			//IPS_SetHidden($_IPS['SELF'], true); //Objekt verstecken
@@ -117,14 +117,14 @@ class IPSTimer extends IPSModule
 			IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
 			IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
 			IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
-			$vid = CreateVariableByName($DummyObjektID, "Timer", 1); 
+			$vid = CreateVariableByName($IPS_SELF, "Timer", 1); 
 			IPS_SetVariableCustomProfile($vid, $vpn); 
 			IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
 			//Anfangswert setzen vom Timer
 			SetValue($vid, -3); 
 
 			//Aktiv Variable Anlegen
-			$vidAktive = CreateVariableByName($DummyObjektID, "Aktive", 0); 
+			$vidAktive = CreateVariableByName($IPS_SELF, "Aktive", 0); 
 			IPS_SetVariableCustomProfile($vidAktive, "~Switch"); 
 			
 			//Action Script für Aktive anlegen und mit Aktive verknüpfen
@@ -141,7 +141,7 @@ class IPSTimer extends IPSModule
 			SetValue($vidAktive, false); 
 
 			//Aktiv Variable Anlegen
-			$vidZeit = CreateVariableByName($DummyObjektID, "Zeit max", 3); 
+			$vidZeit = CreateVariableByName($IPS_SELF, "Zeit max", 3); 
 			IPS_SetVariableCustomProfile($vidZeit, "Text"); 
 			$ScriptIDZeit = IPS_CreateScript(0);
 			IPS_SetName($ScriptIDZeit, "Action Script");
