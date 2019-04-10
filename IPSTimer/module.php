@@ -34,10 +34,8 @@ class IPSTimer extends IPSModule
         $this->RegisterPropertyBoolean('active', 'false');
 		
 		//Timer erstellen und zum durchreichen der Schaltflächen im Modul 
-		$this->RegisterTimer("SchaltenEin", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
-		
+		$this->RegisterTimer("SchaltenEin", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');	
 		$this->RegisterTimer("SchaltenAus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
-		
 		$this->RegisterTimer("Install", 0, 'IPSDOS_Install($_IPS[\'TARGET\']);');
 		
 		//Erstellen eines Variablenprofile für Typ Integer
@@ -65,7 +63,7 @@ class IPSTimer extends IPSModule
 	
 	   	
 		// Instanz Status setzen (aktiv -> inaktiv)
-		if ($name != '' && $maxTime != '' && $idSwitch != '') {			
+		if ($name != '' && $maxTime != '' && $idSwitch != '' && $active == true) {			
 			   // Zeigt Info neben der Instanz
 			   $this->SetSummary("Status OK");			   
                $ok1 = true;		
@@ -82,21 +80,6 @@ class IPSTimer extends IPSModule
 		if ($ok1 == true)
 	  {	
 	   
-	   
-		// Variable anlegen im Ipsymcon vom Typ Integer und vom Profil IPSDOS.Status wenn $ok1 true (Module IO) ist
-		//$this->MaintainVariable("user1Active", $user1, IPS_INTEGER, "IPSDOS.Status", 0, $ok1);
-		//$this->LoggingEnable($user1); //Logging für diese Variable einschalten
-				
-		// ab dem Device2 nur noch Variable löschen wenn nicht alles ausgefüllt Instanz bleibt aktiv
-		//if ($device2 != '' && $user2 != '' && $macaddress2 != '') {
-        //  $this->MaintainVariable("user2Active", $user2, IPS_INTEGER, "IPSDOS.Status", 0, true);        
-		//  $this->LoggingEnable($user2);	//Logging für diese Variable einschalten
-        //} 
-		//else {
-		//	$this->MaintainVariable("user2Active", $user2, IPS_INTEGER, "IPSDOS.Status", 0, false); 
-        //}
-		
-		//..
 	  }
 	}
 		
@@ -112,7 +95,60 @@ class IPSTimer extends IPSModule
     }
 
     public function Install() {
-		echo "Install";	 
+		
+			echo "Install Modul";	 
+		   //Dummy anlegen
+		    $DummyObjektID = IPS_GetParent($_IPS['SELF']);
+            IPS_SetName ($DummyObjektID, $name);  //Dummy Instance umbenennen 
+
+			//IPS_SetParent($_IPS['SELF'], $DummyObjektID);
+			//IPS_SetHidden($_IPS['SELF'], true); //Objekt verstecken
+			
+			 if(IPS_VariableProfileExists($vpn)) { 
+				IPS_DeleteVariableProfile($vpn);
+			}
+			//Timer Variable anlegen
+			IPS_CreateVariableProfile($vpn, 1); 
+			IPS_SetVariableProfileValues($vpn, 0, $maxTime, 0); 
+			IPS_SetVariableProfileIcon($vpn, "Hourglass"); 
+			IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
+			IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
+			IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
+			$vid = CreateVariableByName($DummyObjektID, "Timer", 1); 
+			IPS_SetVariableCustomProfile($vid, $vpn); 
+			IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
+			//Anfangswert setzen vom Timer
+			SetValue($vid, -3); 
+
+			//Aktiv Variable Anlegen
+			$vidAktive = CreateVariableByName($DummyObjektID, "Aktive", 0); 
+			IPS_SetVariableCustomProfile($vidAktive, "~Switch"); 
+			
+			//Action Script für Aktive anlegen und mit Aktive verknüpfen
+			$ScriptID = IPS_CreateScript(0);
+			IPS_SetName($ScriptID, "Action Script");
+			IPS_SetParent($ScriptID, $vidAktive);
+     
+			$data ="<? \n SetValue(\$_IPS['VARIABLE'],"; 
+			$data .=" \$_IPS['VALUE']);"; 
+			$data .="\n?>"; 
+
+			IPS_SetScriptContent($ScriptID, $data);
+			IPS_SetVariableCustomAction($vidAktive, $ScriptID); 
+			SetValue($vidAktive, false); 
+
+			//Aktiv Variable Anlegen
+			$vidZeit = CreateVariableByName($DummyObjektID, "Zeit max", 3); 
+			IPS_SetVariableCustomProfile($vidZeit, "Text"); 
+			$ScriptIDZeit = IPS_CreateScript(0);
+			IPS_SetName($ScriptIDZeit, "Action Script");
+			IPS_SetParent($ScriptIDZeit, $vidZeit);
+			$dataZeit ="<? \n SetValue(\$_IPS['VARIABLE'],"; 
+			$dataZeit .=" \$_IPS['VALUE']);"; 
+			$dataZeit .="\n?>"; 
+			IPS_SetScriptContent($ScriptIDZeit, $dataZeit);
+			IPS_SetVariableCustomAction($vidZeit, $ScriptIDZeit); 
+			SetValueString($vidZeit, $max); 
 
     }
   
