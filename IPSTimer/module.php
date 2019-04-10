@@ -23,18 +23,18 @@
             $triggerID = $this->ReadPropertyInteger("OutputID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
 				
-				if (!GetValue($this->GetIDForIdent("gesetzt"))){
-                return;
+				if (GetValue($this->GetIDForIdent("gesetzt"))){
+                $this->Stop();	
                 }	
-				$this->Stop();	
+				
 			}
 			
-				if (GetValue($this->GetIDForIdent("gesetzt"))){
-                  return;
+				if (!GetValue($this->GetIDForIdent("gesetzt"))){
+                  SetValue($this->GetIDForIdent("gesetzt"), true);
+                  $this->Start();
                 }
 				
-				SetValue($this->GetIDForIdent("gesetzt"), true);
-                $this->Start();
+				
         }
 		
         public function RequestAction($Ident, $Value) {
