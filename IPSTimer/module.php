@@ -49,27 +49,6 @@ class IPSTimer extends IPSModule
         //$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
         //$this->CreateVarProfile('IPSDOS.Status', IPS_INTEGER, '', 0, 0, 0, 1, 'Heart', $associations);
     }
-	
-	// Variablenprofile erstellen
-    private function CreateVarProfile($Name, $ProfileType, $Suffix, $MinValue, $MaxValue, $StepSize, $Digits, $Icon, $Asscociations = '')
-    {
-        if (!IPS_VariableProfileExists($Name)) {
-            IPS_CreateVariableProfile($Name, $ProfileType);
-            IPS_SetVariableProfileText($Name, '', $Suffix);
-            IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
-            IPS_SetVariableProfileDigits($Name, $Digits);
-            IPS_SetVariableProfileIcon($Name, $Icon);
-            if ($Asscociations != '') {
-                foreach ($Asscociations as $a) {
-                    $w = isset($a['Wert']) ? $a['Wert'] : '';
-                    $n = isset($a['Name']) ? $a['Name'] : '';
-                    $i = isset($a['Icon']) ? $a['Icon'] : '';
-                    $f = isset($a['Farbe']) ? $a['Farbe'] : 0;
-                    IPS_SetVariableProfileAssociation($Name, $w, $n, $i, $f);
-                }
-            }
-        }
-    }
 		
     // Wird aufgerufen wenn im Modul was verändert wird
     public function ApplyChanges()
@@ -84,7 +63,7 @@ class IPSTimer extends IPSModule
 		
 		//Timer Interval setzen für Update Function
 		//$this->SetTimerInterval("Install", $this->ReadPropertyInteger("Install")*1000*60);
-
+/*
 		$ok1 = false;	
 	
 	   	
@@ -129,6 +108,6 @@ class IPSTimer extends IPSModule
 			 
 
 		}
-  
-				
+  */
+ }			
 }
