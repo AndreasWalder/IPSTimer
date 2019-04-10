@@ -1,27 +1,8 @@
 {
-	"elements":
-			[
-			    { "type": "Label", "label": "Instanz-Modul-Einstellungen:" },	
-				{ "type": "Label", "label": "" },	
-				{ "type": "ValidationTextBox", "name": "name", "caption": "Name des Timers" },
-			    { "type": "ValidationTextBox", "name": "maxTime", "caption": "Abschaltzeit in min" },
-			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "schaltende Id" },
-				{ "type": "Label", "label": "" },	
-				{ "type": "CheckBox", "name": "active", "caption": "Aktiv" }
-			],
-	"actions":
-			[
-			    { "type": "Label", "label": "Schaltet die Variable zum probieren" },		
-				{ "type": "Button", "label": "Schalten Ein", "onClick": "IPSDOS_SchaltenEin($id);" },
-				{ "type": "Button", "label": "Schalten Aus", "onClick": "IPSDOS_SchaltenAus($id);" },
-				{ "type": "Label", "label": "" },	
-				{ "type": "Label", "label": "Install installiert das Modul:" },		
-				{ "type": "Button", "label": "Install", "onClick": "IPSDOS_Install($id);" }
-			],		
-	"status":
-			[
-				{ "code": 101, "icon": "inactive", "caption": "Instance getting created" },
-				{ "code": 102, "icon": "active", "caption": "Instance is active" },
-				{ "code": 104, "icon": "inactive", "caption": "Instance is inactive" }
-			]
+    "elements":
+    [
+        { "type": "SelectVariable", "name": "InputTriggerID", "caption": "Input Sensor" },
+        { "type": "NumberSpinner", "name": "Duration", "caption": "Duration", "suffix": "min"},
+        { "type": "SelectVariable", "name": "OutputID", "caption": "Output Variable" }
+    ]
 }
