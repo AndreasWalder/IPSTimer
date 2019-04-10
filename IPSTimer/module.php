@@ -4,7 +4,7 @@
         {
             //Never delete this line!
             parent::Create();
-            //$this->RegisterPropertyInteger("InputTriggerID", 0);
+            $this->RegisterPropertyInteger("InputTriggerID", 0);
             $this->RegisterPropertyInteger("Duration", 1);
             $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
@@ -16,11 +16,11 @@
             //Never delete this line!
             parent::ApplyChanges();
 			//$triggerID = $this->GetIDForIdent("Gesetzt");
-            $triggerID = $this->ReadPropertyInteger("OutputID");
+            $triggerID = $this->ReadPropertyInteger("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->ReadPropertyInteger("OutputID");
+            $triggerID = $this->ReadPropertyInteger("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 $this->Stop();	
@@ -28,7 +28,8 @@
 				return;
                 }		
 			}
-			
+
+
 				if (!GetValue($this->GetIDForIdent("gesetzt"))){
                   $this->Start();
 				  SetValue($this->GetIDForIdent("gesetzt"), true);
