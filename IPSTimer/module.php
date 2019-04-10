@@ -14,7 +14,6 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
-			SetValue($this->GetIDForIdent("InputTriggerID"), true);
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
@@ -50,6 +49,9 @@
             switch($Ident) {
                 case "Active":
                     $this->SetActive($Value);
+                    break;
+			    case "OutputID":
+                    SetValue($this->GetIDForIdent("InputTriggerID"), true);
                     break;
                 default:
                     throw new Exception("Invalid ident");
