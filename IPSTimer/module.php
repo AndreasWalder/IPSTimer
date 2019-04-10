@@ -23,10 +23,10 @@
             $triggerID = $this->ReadPropertyInteger("OutputID");
 			//$triggerID = $this->GetIDForIdent("Gesetzt");
             //if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				if (!GetValue($this->GetIDForIdent("OutputID"))){
+				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 return;
             }
-				
+				SetValue($this->GetIDForIdent("gesetzt"), true);
                 $this->Start();
             //}
         }
@@ -53,6 +53,7 @@
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
         public function Stop(){
+			SetValue($this->GetIDForIdent("gesetzt"), false);
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
         }
