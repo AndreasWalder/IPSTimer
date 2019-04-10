@@ -14,6 +14,7 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
+			SetValue($this->GetIDForIdent("InputTriggerID"), true);
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
@@ -68,6 +69,7 @@
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
         public function Stop(){
+			SetValue($this->GetIDForIdent("InputTriggerID"), false);
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
         }
