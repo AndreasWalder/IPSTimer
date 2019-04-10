@@ -9,16 +9,17 @@
             $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
+			$this->RegisterVariableBoolean("Gesetzt", "IPSTimer gesetzt", "~Switch");
             $this->EnableAction("Active");
         }
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
-            $triggerID = $this->ReadPropertyInteger("InputTriggerID");
+            $triggerID = $this->ReadPropertyInteger("OutputID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->ReadPropertyInteger("InputTriggerID");
+            $triggerID = $this->ReadPropertyInteger("OutputID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
@@ -50,9 +51,9 @@
             $this->SetTimerInterval("OffTimer", 0);
         }
         private function SwitchVariable(bool $Value){
-            $InputTriggerID = $this->ReadPropertyInteger("InputTriggerID");
-            $object = IPS_GetObject($InputTriggerID);
-            $variable = IPS_GetVariable($InputTriggerID);
+            $outputID = $this->ReadPropertyInteger("OutputID");
+            $object = IPS_GetObject($outputID);
+            $variable = IPS_GetVariable($outputID);
             $actionID = $this->GetProfileAction($variable);
             //Quit if actionID is not a valid target
             if($actionID < 10000){
@@ -78,7 +79,7 @@
             if(IPS_InstanceExists($actionID)){
                 IPS_RequestAction($actionID, $object['ObjectIdent'], $actionValue);
             } else if(IPS_ScriptExists($actionID)) {
-                echo IPS_RunScriptWaitEx($actionID, Array("VARIABLE" => $InputTriggerID, "VALUE" => $actionValue));
+                echo IPS_RunScriptWaitEx($actionID, Array("VARIABLE" => $outputID, "VALUE" => $actionValue));
             }
         }
         private function GetProfileName($variable){
