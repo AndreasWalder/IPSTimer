@@ -34,14 +34,14 @@ class IPSTimer extends IPSModule
         $this->RegisterPropertyBoolean('active', 'false');
 		
 		//Timer erstellen und zum durchreichen der Schaltflächen im Modul 
-		$this->RegisterTimer("Schalten ein", $this->ReadPropertyInteger("Schalten ein"), 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
-		$this->RegisterTimer("Schalten ein", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Schalten ein", $this->ReadPropertyInteger("Schalten ein"), 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Schalten ein", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
 		
-		$this->RegisterTimer("Schalten aus", $this->ReadPropertyInteger("Schalten aus"), 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
-		$this->RegisterTimer("Schalten aus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Schalten aus", $this->ReadPropertyInteger("Schalten aus"), 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Schalten aus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
 		
-		$this->RegisterTimer("Install", $this->ReadPropertyInteger("Install"), 'IPSDOS_Install($_IPS[\'TARGET\']);');
-		$this->RegisterTimer("Install", 0, 'IPSDOS_Install($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Install", $this->ReadPropertyInteger("Install"), 'IPSDOS_Install($_IPS[\'TARGET\']);');
+		//$this->RegisterTimer("Install", 0, 'IPSDOS_Install($_IPS[\'TARGET\']);');
 		
 		//Erstellen eines Variablenprofile für Typ Integer
 		//$associations = [];
@@ -83,11 +83,11 @@ class IPSTimer extends IPSModule
         $active = $this->ReadPropertyBoolean('active');
 		
 		//Timer Interval setzen für Update Function
-		$this->SetTimerInterval("Install", $this->ReadPropertyInteger("Install")*1000*60);
+		//$this->SetTimerInterval("Install", $this->ReadPropertyInteger("Install")*1000*60);
 
 		$ok1 = false;	
 	
-	   if ($dhcpType1 == 0) {		
+	   	
 		// Instanz Status setzen (aktiv -> inaktiv)
 		if ($name != '' && $maxTime != '' && $idSwitch !=) {			
 			   // Zeigt Info neben der Instanz
@@ -101,7 +101,6 @@ class IPSTimer extends IPSModule
 			 $ok1 = false;		 
              $this->SetStatus(104);
         }
-	  }
 	   
 	  
 		if ($ok1 == true)
