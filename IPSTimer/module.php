@@ -13,12 +13,12 @@
         }
         public function ApplyChanges() {
             //Never delete this line!
-            parent::ApplyChanges();
-            $triggerID = $this->GetIDForIdent("Gesetzt");
+            parent::ApplyChanges();			
+            $triggerID = $this->GetIDForIdent("Gesetzt")
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->GetIDForIdent("Gesetzt");
+            $triggerID = $this->GetIDForIdent("Gesetzt")
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
@@ -54,6 +54,7 @@
             $object = IPS_GetObject($outputID);
             $variable = IPS_GetVariable($outputID);
             $actionID = $this->GetProfileAction($variable);
+			SetValue($this->GetIDForIdent("Gesetzt"), $Value);
             //Quit if actionID is not a valid target
             if($actionID < 10000){
                 echo $this->Translate("Die Ausgabevariable hat keine Variablenaktion! (Aktion hinzufügen)");
