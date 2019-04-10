@@ -9,7 +9,7 @@
             $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
-			$this->RegisterVariableBoolean("gesetzt", "IPSTimer aktiv", "~Switch");
+			$this->RegisterVariableBoolean("gesetzt", "gesetzt", "~Switch");
             $this->EnableAction("Active");
         }
         public function ApplyChanges() {
@@ -21,8 +21,9 @@
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
             $triggerID = $this->ReadPropertyInteger("OutputID");
-			//$triggerID = $this->GetIDForIdent("Gesetzt");
-            //if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
+            if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
+				echo "Hallo";
+			}
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 return;
             }
