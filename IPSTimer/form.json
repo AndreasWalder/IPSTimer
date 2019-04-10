@@ -5,7 +5,7 @@
 				{ "type": "Label", "label": "" },	
 				{ "type": "ValidationTextBox", "name": "name", "caption": "Name des Timers" },
 			    { "type": "ValidationTextBox", "name": "maxTime", "caption": "Abschaltzeit in min" },
-			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "Id der schaltenden Variable" },
+			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "schaltende Id" },
 				{ "type": "Label", "label": "" },	
 				{ "type": "CheckBox", "name": "active", "caption": "Aktiv" }
 			],
