@@ -94,12 +94,12 @@ class IPSTimer extends IPSModule
             return;
     }
 
-    public function Install($name, $maxTime, $idSwitch) {
+    public function Install(string $name, string $maxTime, string $idSwitch) {
 		
 			echo "Install Modul";
 			
 			$vpn = "Modul".$name.".".$maxTime; 
-			/*
+			
 		   //Dummy anlegen
 		    //$DummyObjektID = IPS_GetParent($_IPS['SELF']);
             //IPS_SetName ($DummyObjektID, $name);  //Dummy Instance umbenennen 
@@ -152,7 +152,7 @@ class IPSTimer extends IPSModule
 			IPS_SetScriptContent($ScriptIDZeit, $dataZeit);
 			IPS_SetVariableCustomAction($vidZeit, $ScriptIDZeit); 
 			SetValueString($vidZeit, $max); 
-			*/
+			
 			return;
 
     }
