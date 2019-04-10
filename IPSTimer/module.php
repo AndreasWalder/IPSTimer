@@ -4,7 +4,7 @@
         {
             //Never delete this line!
             parent::Create();
-            $this->RegisterPropertyInteger("InputTriggerID", 0);
+            $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterPropertyInteger("Duration", 1);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
