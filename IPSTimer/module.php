@@ -108,19 +108,19 @@ class IPSTimer extends IPSModule
 			//IPS_SetParent($_IPS['SELF'], $DummyObjektID);
 			//IPS_SetHidden($_IPS['SELF'], true); //Objekt verstecken
 			
-			 if($this->IPS_VariableProfileExists($vpn)) { 
-				$this->IPS_DeleteVariableProfile($vpn);
+			 if(IPS_VariableProfileExists($vpn)) { 
+				IPS_DeleteVariableProfile($vpn);
 			}
 			//Timer Variable anlegen
 			$this->IPS_CreateVariableProfile($vpn, 1); 
-			$this->IPS_SetVariableProfileValues($vpn, 0, $maxTime, 0); 
-			$this->IPS_SetVariableProfileIcon($vpn, "Hourglass"); 
-			$this->IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
-			$this->IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
-			$this->IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
+			IPS_SetVariableProfileValues($vpn, 0, $maxTime, 0); 
+			IPS_SetVariableProfileIcon($vpn, "Hourglass"); 
+			IPS_SetVariableProfileAssociation($vpn, -3, "Aus", "", 0xFF0000); 
+			IPS_SetVariableProfileAssociation($vpn, 0, "%d ".$suffix, "", 0x00FF00); 
+			IPS_SetVariableProfileAssociation($vpn, $maxTime+2, "+".$maxTime." Ein", "", -1); 
 			$vid = $this->CreateVariableByName($IPS_SELF, "Timer", 1); 
-			$this->IPS_SetVariableCustomProfile($vid, $vpn); 
-			$this->IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
+			IPS_SetVariableCustomProfile($vid, $vpn); 
+			IPS_SetVariableCustomAction($vid, $_IPS['SELF']); 
 			//Anfangswert setzen vom Timer
 			$this->SetValue($vid, -3); 
 
