@@ -34,13 +34,13 @@ class IPSTimer extends IPSModule
         $this->RegisterPropertyBoolean('active', 'false');
 		
 		//Timer erstellen und zum durchreichen der Schaltflächen im Modul 
-		//$this->RegisterTimer("Schalten ein", $this->ReadPropertyInteger("Schalten ein"), 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Schalten_ein", $this->ReadPropertyInteger("Schalten_ein"), 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("Schalten_ein", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
 		
-		//$this->RegisterTimer("Schalten aus", $this->ReadPropertyInteger("Schalten aus"), 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Schalten_aus", $this->ReadPropertyInteger("Schalten_aus"), 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("Schalten_aus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
 		
-		//$this->RegisterTimer("Install", $this->ReadPropertyInteger("Install"), 'IPSDOS_Install($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Install", $this->ReadPropertyInteger("Install"), 'IPSDOS_Install($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("Install", 0, 'IPSDOS_Install($_IPS[\'TARGET\']);');
 		
 		//Erstellen eines Variablenprofile für Typ Integer
