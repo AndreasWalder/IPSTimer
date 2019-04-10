@@ -6,20 +6,20 @@
             parent::Create();
             $this->RegisterPropertyInteger("InputTriggerID", 0);
             $this->RegisterPropertyInteger("Duration", 1);
-            $this->RegisterPropertyInteger("OutputID", 0);
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
 			$this->RegisterVariableBoolean("Gesetzt", "IPSTimer gesetzt", "~Switch");
+			$this->RegisterPropertyInteger("Gesetzt", 0);
             $this->EnableAction("Active");
         }
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
-            $triggerID = $this->ReadPropertyInteger("OutputID");
+            $triggerID = $this->ReadPropertyInteger("Gesetzt");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->ReadPropertyInteger("OutputID");
+            $triggerID = $this->ReadPropertyInteger("Gesetzt");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
