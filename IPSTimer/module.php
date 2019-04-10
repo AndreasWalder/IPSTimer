@@ -40,6 +40,11 @@
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
+			
+			if (GetValue($this->GetIDForIdent("InputTriggerID"))){
+				return;
+            }	
+			
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
