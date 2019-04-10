@@ -16,7 +16,7 @@
             //Never delete this line!
             parent::ApplyChanges();
 			//$triggerID = $this->GetIDForIdent("Gesetzt");
-            $triggerID = $this->ReadPropertyInteger("OutputID");
+            $triggerID = $this->ReadPropertyInteger("gesetzt");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
@@ -25,6 +25,7 @@
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 $this->Stop();	
 				SetValue($this->GetIDForIdent("gesetzt"), false);
+				return;
                 }		
 			}
 			
