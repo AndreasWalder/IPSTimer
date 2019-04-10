@@ -51,12 +51,6 @@
                 case "Active":
                     $this->SetActive($Value);
                     break;
-			    case "OutputID":
-				    if (!GetValue($this->GetIDForIdent("OutputID"))){
-                     return;
-                    }
-                    SetValue($this->GetIDForIdent("InputTriggerID"), true);
-                    break;
                 default:
                     throw new Exception("Invalid ident");
             }
