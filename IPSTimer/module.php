@@ -22,7 +22,7 @@
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
             $triggerID = $this->ReadPropertyInteger("OutputID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				echo "Hallo";
+				$this->Stop();
 			}
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
                 return;
