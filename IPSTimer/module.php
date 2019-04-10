@@ -40,11 +40,6 @@
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
-			
-			if (GetValue($this->GetIDForIdent("InputTriggerID"))){
-				return;
-            }	
-			
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
@@ -67,6 +62,9 @@
         public function Start(){
             if (!GetValue($this->GetIDForIdent("Active"))){
                 return;
+            }
+			if (GetValue($this->GetIDForIdent("InputTriggerID"))){
+				return;
             }
             $duration = $this->ReadPropertyInteger("Duration");
             $this->SwitchVariable(true);
