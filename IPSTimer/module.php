@@ -15,8 +15,8 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
-			//$triggerID = $this->GetIDForIdent("Gesetzt");
-            $triggerID = $this->ReadPropertyInteger("gesetzt");
+			$triggerID = $this->GetIDForIdent("Gesetzt");
+            //$triggerID = $this->ReadPropertyInteger("gesetzt");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
