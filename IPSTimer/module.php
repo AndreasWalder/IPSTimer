@@ -35,10 +35,10 @@ class IPSTimer extends IPSModule
 		
 		//Timer erstellen und zum durchreichen der Schaltflächen im Modul 
 		//$this->RegisterTimer("Schalten ein", $this->ReadPropertyInteger("Schalten ein"), 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
-		$this->RegisterTimer("Schalten ein", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Schalten_ein", 0, 'IPSDOS_SchaltenEin($_IPS[\'TARGET\']);');
 		
 		//$this->RegisterTimer("Schalten aus", $this->ReadPropertyInteger("Schalten aus"), 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
-		$this->RegisterTimer("Schalten aus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
+		$this->RegisterTimer("Schalten_aus", 0, 'IPSDOS_SchaltenAus($_IPS[\'TARGET\']);');
 		
 		//$this->RegisterTimer("Install", $this->ReadPropertyInteger("Install"), 'IPSDOS_Install($_IPS[\'TARGET\']);');
 		$this->RegisterTimer("Install", 0, 'IPSDOS_Install($_IPS[\'TARGET\']);');
