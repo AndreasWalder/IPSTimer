@@ -79,7 +79,7 @@ class IPSTimer extends IPSModule
 	  
 		if ($ok1 == true)
 	  {	
-	    Install($name, $maxTime, $idSwitch);
+	    $this->Install($name, $maxTime, $idSwitch);
 	  }
 	}
 		
