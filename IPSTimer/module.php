@@ -18,7 +18,7 @@
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
         public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->GetIDForIdent("Gesetzt")
+            $triggerID = $this->GetIDForIdent("Gesetzt");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
