@@ -8,7 +8,7 @@
 			    { "type": "ValidationTextBox", "name": "maxTime", "caption": "Shutdown time in min" },
 			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "ID of the switching variable" },
 				{ "type": "Label", "label": "" },	
-				{ "type": "CheckBox", "name": "active", "caption": "active" },
+				{ "type": "CheckBox", "name": "active", "caption": "active" }
 			],
 	"actions":
 			[
