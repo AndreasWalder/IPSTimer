@@ -56,7 +56,7 @@
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
-        public function Stop()
+        public function Stop(){
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
         }
