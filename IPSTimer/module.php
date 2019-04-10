@@ -50,9 +50,9 @@
             $this->SetTimerInterval("OffTimer", 0);
         }
         private function SwitchVariable(bool $Value){
-            $outputID = $this->ReadPropertyInteger("OutputID");
-            $object = IPS_GetObject($outputID);
-            $variable = IPS_GetVariable($outputID);
+            $InputTriggerID = $this->ReadPropertyInteger("InputTriggerID");
+            $object = IPS_GetObject($InputTriggerID);
+            $variable = IPS_GetVariable($InputTriggerID);
             $actionID = $this->GetProfileAction($variable);
             //Quit if actionID is not a valid target
             if($actionID < 10000){
@@ -78,7 +78,7 @@
             if(IPS_InstanceExists($actionID)){
                 IPS_RequestAction($actionID, $object['ObjectIdent'], $actionValue);
             } else if(IPS_ScriptExists($actionID)) {
-                echo IPS_RunScriptWaitEx($actionID, Array("VARIABLE" => $outputID, "VALUE" => $actionValue));
+                echo IPS_RunScriptWaitEx($actionID, Array("VARIABLE" => $InputTriggerID, "VALUE" => $actionValue));
             }
         }
         private function GetProfileName($variable){
