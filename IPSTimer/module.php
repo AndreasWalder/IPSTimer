@@ -14,8 +14,7 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
-			//$triggerID = $this->GetIDForIdent("Gesetzt");
-            $triggerID = $this->ReadVariableBoolean("InputTriggerID");
+			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
 		
@@ -39,7 +38,8 @@
 		*/
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->ReadVariableBoolean("InputTriggerID");
+            //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
+			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
