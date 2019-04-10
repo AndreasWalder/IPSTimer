@@ -3,12 +3,11 @@
 			[
 			    { "type": "Label", "label": "Instanz-Modul-Einstellungen:" },	
 				{ "type": "Label", "label": "" },	
+				{ "type": "ValidationTextBox", "name": "name", "caption": "Name des Timers" },
+			    { "type": "ValidationTextBox", "name": "maxTime", "caption": "Abschaltzeit in min" },
+			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "Id der schaltenden Variable" },
 				{ "type": "Label", "label": "" },	
-				{ "type": "ValidationTextBox", "name": "name", "caption": "Name of the timer" },
-			    { "type": "ValidationTextBox", "name": "maxTime", "caption": "Shutdown time in min" },
-			    { "type": "ValidationTextBox", "name": "idSwitch", "caption": "ID of the switching variable" },
-				{ "type": "Label", "label": "" },	
-				{ "type": "CheckBox", "name": "active", "caption": "active" }
+				{ "type": "CheckBox", "name": "active", "caption": "Aktiv" }
 			],
 	"actions":
 			[
