@@ -24,10 +24,9 @@
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
 				
 				if (!GetValue($this->GetIDForIdent("gesetzt"))){
-                  return;
-                }
-				
-				$this->Stop();		
+                return;
+                }	
+				$this->Stop();	
 			}
 			
 				if (GetValue($this->GetIDForIdent("gesetzt"))){
