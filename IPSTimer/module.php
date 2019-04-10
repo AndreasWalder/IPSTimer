@@ -68,7 +68,7 @@ class IPSTimer extends IPSModule
 	
 	   	
 		// Instanz Status setzen (aktiv -> inaktiv)
-		if ($name != '' && $maxTime != '' && $idSwitch !=) {			
+		if ($name != '' && $maxTime != '' && $idSwitch != '') {			
 			   // Zeigt Info neben der Instanz
 			   $this->SetSummary("Status OK");			   
                $ok1 = true;		
