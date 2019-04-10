@@ -14,6 +14,7 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();			
+			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $triggerID = $this->GetIDForIdent("Gesetzt");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
@@ -42,11 +43,13 @@
                 return;
             }
             $duration = $this->ReadPropertyInteger("Duration");
+			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
         }
         public function Stop(){
             $this->SwitchVariable(false);
+			SetValue($this->GetIDForIdent("Gesetzt"), true);
             $this->SetTimerInterval("OffTimer", 0);
         }
         private function SwitchVariable(bool $Value){
@@ -54,7 +57,6 @@
             $object = IPS_GetObject($outputID);
             $variable = IPS_GetVariable($outputID);
             $actionID = $this->GetProfileAction($variable);
-			SetValue($this->GetIDForIdent("Gesetzt"), $Value);
             //Quit if actionID is not a valid target
             if($actionID < 10000){
                 echo $this->Translate("Die Ausgabevariable hat keine Variablenaktion! (Aktion hinzufügen)");
