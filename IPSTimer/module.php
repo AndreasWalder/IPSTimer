@@ -10,6 +10,7 @@
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
 			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
             $this->EnableAction("Active");
+			$this->EnableAction("OutputID");
         }
         public function ApplyChanges() {
             //Never delete this line!
@@ -51,6 +52,9 @@
                     $this->SetActive($Value);
                     break;
 			    case "OutputID":
+				    if (!GetValue($this->GetIDForIdent("OutputID"))){
+                     return;
+                    }
                     SetValue($this->GetIDForIdent("InputTriggerID"), true);
                     break;
                 default:
