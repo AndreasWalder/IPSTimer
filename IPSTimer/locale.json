@@ -1,0 +1,14 @@
+{
+	"translations": {
+		"de": {
+		    "name": "Name des Timers",
+			"maxTime": "Abschaltzeit in min",
+			"idSwitch": "Id der schaltenden Variable",
+			"active": "Aktiv",
+			"Instance getting created": "Instanz wird erstellt",
+			"Instance is active": "Instanz ist aktiv",
+			"Instance is inactive": "Instanz ist inaktiv",
+			"Instance is inactive (invalid configuration)": "Instanz ist inaktiv (ungueltige Konfiguration)"		
+		}
+	}
+}

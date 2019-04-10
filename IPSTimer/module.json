@@ -1,0 +1,13 @@
+{
+	"id": "{CB5A1DFA-6A35-36EC-5B97-E836850A9B61}",
+	"name": "IPSTimer",
+	"type": 3,
+	"vendor": "",
+	"aliases": [
+		"IPSTimer"
+	],
+	"parentRequirements": [],
+	"childRequirements": [],
+	"implemented": [],
+	"prefix": "IPSDOS"
+}
