@@ -50,12 +50,16 @@
                 case "Active":
                     $this->SetActive($Value);
 					
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerEvent", $this->GetIDForIdent("InputTriggerID"));
+                    if ($EreignisID === false)
+					{
 					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
+					IPS_SetName($eid, "IPSTimerEvent");								              //Name dem Event zuordnen
 					IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
-					IPS_SetEventTriggerValue($this->GetIDForIdent("InputTriggerID"), true);		  //Nur auf TRUE Werte auslösen
+					IPS_SetEventTriggerValue($eid, true);		                                  //Nur auf TRUE Werte auslösen
 					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable gesetzt     									  //Ereignis zuordnen
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
-					
+					}
                     break;
                 default:
                     throw new Exception("Invalid ident");
