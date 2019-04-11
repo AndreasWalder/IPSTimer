@@ -51,10 +51,9 @@
                     $this->SetActive($Value);
 					
 					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
-					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //ID zuordnen zu Variable gesetzt
 					IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					IPS_SetEventTriggerValue($this->GetIDForIdent("InputTriggerID"), true);		  //Nur auf TRUE Werte auslösen
-					IPS_SetParent($eid, $_IPS['SELF']);        									  //Ereignis zuordnen
+					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable gesetzt     									  //Ereignis zuordnen
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
 					
                     break;
