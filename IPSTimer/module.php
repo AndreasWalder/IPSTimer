@@ -77,7 +77,7 @@
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				SetValue($this->GetIDForIdent("Status"), $this->ReadPropertyInteger("Status") - 1);
+				SetValue($this->GetIDForIdent("Status"), GetValue($this->GetIDForIdent("Status")) - 1);
                 $this->Start();
             }
         }
