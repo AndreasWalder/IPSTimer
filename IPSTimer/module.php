@@ -60,7 +60,7 @@
 					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "gesetzt"     									  //Ereignis zuordnen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "gesetzt" == true
 					IPS_SetEventCondition($eid, 0, 0, 0);
-                    IPS_SetEventConditionVariableRule($eid, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, true);
+                    IPS_SetEventConditionVariableRule($eid, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, false);
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
 					}
                     break;
