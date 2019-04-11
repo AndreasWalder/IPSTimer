@@ -49,7 +49,7 @@
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.Status', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
-			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
+			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.Status");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
@@ -77,7 +77,7 @@
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				SetValue($this->GetIDForIdent("Status"), GetValue($this->GetIDForIdent("Status")) - 1);
+				SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit")) - 1);
                 $this->Start();
             }
         }
@@ -139,13 +139,13 @@
             $duration = $this->ReadPropertyInteger("Duration");
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
-			SetValue($this->GetIDForIdent("Status"), GetValue($this->GetIDForIdent("Duration")) + 1);
+			$this->SetValue($this->GetIDForIdent("Ablaufzeit"), $duration + 1);
         }
         public function Stop(){
 			SetValue($this->GetIDForIdent("InputTriggerID"), false);
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
-			SetValue($this->GetIDForIdent("Status"), 0);
+			$this->SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
         }
         private function SwitchVariable(bool $Value){
             $outputID = $this->ReadPropertyInteger("OutputID");
