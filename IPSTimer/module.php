@@ -53,7 +53,7 @@
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("InputTriggerID"));
                     if ($EreignisID === false)
 					{
-					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis		
+					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis 		
 					IPS_SetEventTrigger($eidan, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
