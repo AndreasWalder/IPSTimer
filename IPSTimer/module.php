@@ -10,12 +10,6 @@
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
             $this->EnableAction("Active");
-			
-			//Erstellen eines Variablenprofile für Typ Integer
-			//$associations = [];
-			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
-			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
-			
         }
 		
 		
@@ -47,6 +41,10 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
+			//Erstellen eines Variablenprofile für Typ Integer
+			$associations = '';
+			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
+			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.Status', 1, 'min', 0, $this->ReadPropertyInteger("OutputID"), 0, 1, 'Clock', $associations);			
 			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
