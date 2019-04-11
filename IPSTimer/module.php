@@ -10,7 +10,47 @@
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
             $this->EnableAction("Active");
+			
+			//Erstellen eines Variablenprofile für Typ Integer
+			//$associations = [];
+			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
+			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
+			
         }
+		
+		public function ApplyChanges()
+		{
+			parent::ApplyChanges();
+		    $this->CreateVarProfile('IPSTimer.Status', IPS_INTEGER, 'min', 0, $this->ReadPropertyInteger("OutputID"), 0, 1, 'Clock', $associations);			
+			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
+		}
+		
+		
+		// Variablenprofile erstellen
+		private function CreateVarProfile($Name, $ProfileType, $Suffix, $MinValue, $MaxValue, $StepSize, $Digits, $Icon, $Asscociations = '')
+		{
+			if (!IPS_VariableProfileExists($Name)) {
+				IPS_CreateVariableProfile($Name, $ProfileType);
+				IPS_SetVariableProfileText($Name, '', $Suffix);
+				IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
+				IPS_SetVariableProfileDigits($Name, $Digits);
+				IPS_SetVariableProfileIcon($Name, $Icon);
+				if ($Asscociations != '') {
+					foreach ($Asscociations as $a) {
+						$w = isset($a['Wert']) ? $a['Wert'] : '';
+						$n = isset($a['Name']) ? $a['Name'] : '';
+						$i = isset($a['Icon']) ? $a['Icon'] : '';
+						$f = isset($a['Farbe']) ? $a['Farbe'] : 0;
+						IPS_SetVariableProfileAssociation($Name, $w, $n, $i, $f);
+					}
+				}
+			}
+			else {
+			 IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);	
+			}
+		}
+		
+		
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
