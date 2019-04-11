@@ -60,26 +60,12 @@
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
         }
 		
-		/*
-        public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-            $triggerID = $this->ReadPropertyInteger("InputTriggerID");
-            if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				if (GetValue($this->GetIDForIdent("gesetzt"))){
-                $this->Stop();	
-				SetValue($this->GetIDForIdent("gesetzt"), false);
-				return;
-                }		
-			}
-
-
-				if (!GetValue($this->GetIDForIdent("gesetzt"))){
-                  $this->Start();
-				  SetValue($this->GetIDForIdent("gesetzt"), true);
-                }		
-        }
-		*/
-		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
+			
+			if (!GetValue($this->GetIDForIdent("InputTriggerID"))) {
+			   SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
+			}
+			
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
@@ -148,11 +134,8 @@
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			$this->SetTimerInterval("Update", 60 * 1000);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
-			
-			//if (GetValue($this->GetIDForIdent("Ablaufzeit")) < 0) {				
-			//SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
-			//}
         }
+		
         public function Stop(){
 			SetValue($this->GetIDForIdent("InputTriggerID"), false);
             $this->SwitchVariable(false);
