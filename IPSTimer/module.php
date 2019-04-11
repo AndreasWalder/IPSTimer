@@ -139,7 +139,7 @@
             $duration = $this->ReadPropertyInteger("Duration");
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
-			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration + 1);
+			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
         }
         public function Stop(){
 			SetValue($this->GetIDForIdent("InputTriggerID"), false);
