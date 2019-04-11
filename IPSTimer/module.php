@@ -41,6 +41,9 @@
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
+				if (!GetValue($this->GetIDForIdent("InputTriggerID"))){
+                return;
+            }
                 $this->Start();
             }
         }
