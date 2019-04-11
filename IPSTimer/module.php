@@ -6,9 +6,13 @@
             parent::Create();
             $this->RegisterPropertyInteger("Duration", 1);
             $this->RegisterPropertyInteger("OutputID", 0);
+			
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
+			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
+			
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
+			
             $this->EnableAction("Active");
         }
 		
@@ -145,7 +149,7 @@
             $duration = $this->ReadPropertyInteger("Duration");
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
-			
+			$this->SetTimerInterval("Update", 1000);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
 			
 			//if (GetValue($this->GetIDForIdent("Ablaufzeit")) < 0) {				
@@ -158,6 +162,15 @@
             $this->SetTimerInterval("OffTimer", 0);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
         }
+		
+		public function Update(){
+			if (GetValue($this->GetIDForIdent("Ablaufzeit")) == 0) {
+			   $this->SetTimerInterval("Update", 0);
+			   return;
+			}
+            SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit") - 1);
+        }
+		
         private function SwitchVariable(bool $Value){
             $outputID = $this->ReadPropertyInteger("OutputID");
             $object = IPS_GetObject($outputID);
