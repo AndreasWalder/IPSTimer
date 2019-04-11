@@ -76,10 +76,10 @@
 		*/
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
+			SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit")) - 1);
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
-				SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit")) - 1);
                 $this->Start();
             }
         }
@@ -142,7 +142,7 @@
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			
-			if (GetValue($this->GetIDForIdent("Ablaufzeit")) <= 0) {				
+			if (GetValue($this->GetIDForIdent("Ablaufzeit")) < 0) {				
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
 			}
         }
