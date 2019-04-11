@@ -76,7 +76,7 @@
 		*/
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
-			if (GetValue($this->GetIDForIdent("gesetzt"))) == false {
+			if (GetValue($this->GetIDForIdent("gesetzt"))) == 'Aus' {
 			   SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
 			}
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
