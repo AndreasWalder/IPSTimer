@@ -10,12 +10,6 @@
             $this->RegisterVariableBoolean("Active", "IPSTimer aktiv", "~Switch");
 			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
             $this->EnableAction("Active");
-			
-			$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
-			IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
-			IPS_SetEventTriggerValue($this->GetIDForIdent("gesetzt"), true);			  //Nur auf TRUE Werte auslösen
-			IPS_SetParent($eid, $_IPS['SELF']);        									  //Ereignis zuordnen
-			IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
         }
         public function ApplyChanges() {
             //Never delete this line!
@@ -55,6 +49,13 @@
             switch($Ident) {
                 case "Active":
                     $this->SetActive($Value);
+					
+					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
+					IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
+					IPS_SetEventTriggerValue($this->GetIDForIdent("gesetzt"), true);			  //Nur auf TRUE Werte auslösen
+					IPS_SetParent($eid, $_IPS['SELF']);        									  //Ereignis zuordnen
+					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
+					
                     break;
                 default:
                     throw new Exception("Invalid ident");
