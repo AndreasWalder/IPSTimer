@@ -54,11 +54,11 @@
                     if ($EreignisID === false)
 					{
 					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
+					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					IPS_SetEventTrigger($eidan, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, false);
-					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
                     IPS_SetEventTriggerSubsequentExecution($eidan, true); 
 					IPS_SetParent($eidan, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
 					IPS_SetName($eidan, "IPSTimerEventAn");								              //Name dem Event zuordnen
@@ -69,11 +69,11 @@
                     if ($EreignisID === false)
 					{
 					$eidaus = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
+					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen
 					IPS_SetEventTrigger($eidaus, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, true);
-					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf TRUE Werte auslösen
                     IPS_SetEventTriggerSubsequentExecution($eidaus, true); 
 					IPS_SetParent($eidaus, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
 					IPS_SetName($eidaus, "IPSTimerEventOFF");								              //Name dem Event zuordnen
