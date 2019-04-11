@@ -99,7 +99,8 @@
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
-                    IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, false);
+                    IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("InputTriggerID"), 0, false);
+					IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidan, true); 
 					IPS_SetParent($eidan, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
 					IPS_SetIdent($eidan, "IPSTimerEventAn");
@@ -116,7 +117,8 @@
 					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
-                    IPS_SetEventConditionVariableRule($eidaus, 0, 3, $this->GetIDForIdent("InputTriggerID"), 0, true);
+                    IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("InputTriggerID"), 0, true);
+					IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidaus, true); 
 					IPS_SetParent($eidaus, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
 					IPS_SetIdent($eidaus, "IPSTimerEventOFF");
