@@ -60,7 +60,7 @@
 					IPS_SetEventCondition($eid, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eid, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, false);
 					IPS_SetEventTriggerValue($eid, true);  //true,false 
-                    IPS_SetEventTriggerSubsequentExecution($eid, false); 
+                    IPS_SetEventTriggerSubsequentExecution($eid, true); 
 					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
 					IPS_SetName($eid, "IPSTimerEvent");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
