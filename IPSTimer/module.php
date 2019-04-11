@@ -50,7 +50,7 @@
                 case "Active":
                     $this->SetActive($Value);
 					
-					$EreignisID = @IPS_GetEventIDByName("IPSTimerEvent", $this->GetIDForIdent("InputTriggerID"));
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("InputTriggerID"));
                     if ($EreignisID === false)
 					{
 					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
@@ -61,9 +61,26 @@
 					IPS_SetEventTriggerValue($eid, true);		                                  //Nur auf TRUE Werte auslösen
                     IPS_SetEventTriggerSubsequentExecution($eid, true); 
 					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
-					IPS_SetName($eid, "IPSTimerEvent");								              //Name dem Event zuordnen
+					IPS_SetName($eid, "IPSTimerEventAn");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
 					}
+					
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventOFF", $this->GetIDForIdent("InputTriggerID"));
+                    if ($EreignisID === false)
+					{
+					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
+					IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
+					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
+					IPS_SetEventCondition($eid, 0, 0, 0);
+                    IPS_SetEventConditionVariableRule($eid, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, true);
+					IPS_SetEventTriggerValue($eid, false);		                                  //Nur auf TRUE Werte auslösen
+                    IPS_SetEventTriggerSubsequentExecution($eid, true); 
+					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
+					IPS_SetName($eid, "IPSTimerEventOFF");								              //Name dem Event zuordnen
+					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
+					}
+					
+					
                     break;
                 default:
                     throw new Exception("Invalid ident");
