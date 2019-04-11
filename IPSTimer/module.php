@@ -168,7 +168,7 @@
 			   $this->SetTimerInterval("Update", 0);
 			   return;
 			}
-            SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit") - 1);
+            SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Ablaufzeit") - 1));
         }
 		
         private function SwitchVariable(bool $Value){
