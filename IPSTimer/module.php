@@ -52,6 +52,8 @@
 			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.Status");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
+			
+			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
         }
 		
 		/*
@@ -140,7 +142,7 @@
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			
-			if (GetValue($this->GetIDForIdent("Ablaufzeit")) == 0) {				
+			if (GetValue($this->GetIDForIdent("Ablaufzeit")) <= 0) {				
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
 			}
         }
