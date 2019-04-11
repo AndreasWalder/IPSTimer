@@ -18,13 +18,6 @@
 			
         }
 		
-		public function ApplyChanges()
-		{
-			parent::ApplyChanges();
-		    $this->CreateVarProfile('IPSTimer.Status', IPS_INTEGER, 'min', 0, $this->ReadPropertyInteger("OutputID"), 0, 1, 'Clock', $associations);			
-			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
-		}
-		
 		
 		// Variablenprofile erstellen
 		private function CreateVarProfile($Name, $ProfileType, $Suffix, $MinValue, $MaxValue, $StepSize, $Digits, $Icon, $Asscociations = '')
@@ -54,6 +47,8 @@
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
+			$this->CreateVarProfile('IPSTimer.Status', IPS_INTEGER, 'min', 0, $this->ReadPropertyInteger("OutputID"), 0, 1, 'Clock', $associations);			
+			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
         }
