@@ -54,13 +54,13 @@
                     if ($EreignisID === false)
 					{
 					$eid = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis
-					IPS_SetName($eid, "IPSTimerEvent");								              //Name dem Event zuordnen
 					IPS_SetEventTrigger($eid, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					IPS_SetEventTriggerValue($eid, true);		                                  //Nur auf TRUE Werte auslösen
-					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "gesetzt"     									  //Ereignis zuordnen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "gesetzt" == true
 					IPS_SetEventCondition($eid, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eid, 0, 2, $this->GetIDForIdent("InputTriggerID"), 0, false);
+					IPS_SetName($eid, "IPSTimerEvent");								              //Name dem Event zuordnen
+					IPS_SetParent($eid, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "gesetzt"  
 					IPS_SetEventActive($eid, true);          								      //Ereignis aktivieren
 					}
                     break;
