@@ -33,7 +33,10 @@
 				}
 			}
 			else {
-			 IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);	
+			 IPS_SetVariableProfileText($Name, '', $Suffix);
+			 IPS_SetVariableProfileValues($Name, $MinValue, $MaxValue, $StepSize);
+			 IPS_SetVariableProfileDigits($Name, $Digits);
+			 IPS_SetVariableProfileIcon($Name, $Icon);
 			}
 		}
 		
@@ -45,7 +48,7 @@
 			$associations = '';
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
-			$this->CreateVarProfile('IPSTimer.Status', 1, 'min', 0, $this->ReadPropertyInteger("OutputID"), 0, 1, 'Clock', $associations);			
+			$this->CreateVarProfile('IPSTimer.Status', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
 			$this->RegisterVariableInteger("Status", "Ablaufzeit", "IPSTimer.Status");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
@@ -74,6 +77,7 @@
             //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
+				SetValue($this->GetIDForIdent("Status"), $this->ReadPropertyInteger("Status") - 1);
                 $this->Start();
             }
         }
