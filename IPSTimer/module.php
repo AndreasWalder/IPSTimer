@@ -34,7 +34,7 @@
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.Dauer', 1, ' min', 0, 0, 0, 1, 'Clock', $associations);	
-			$this->RegisterVariableInteger("Dauer", "Dauer", "", 30);
+			$this->RegisterVariableInteger("Dauer", "Dauer", "IPSTimer.Dauer", 30);
 			
 			
 			$this->EnableAction("Dauer");	
