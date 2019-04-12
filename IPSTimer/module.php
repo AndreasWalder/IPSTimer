@@ -265,12 +265,14 @@
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == true) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == false) {
 			   SetValue($this->GetIDForIdent("Schalten"), true);
+			   SetValue($this->GetIDForIdent("Status"), true);
 			 }
 			}
 			
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == false) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == true) {
 			   SetValue($this->GetIDForIdent("Schalten"), false);
+			   SetValue($this->GetIDForIdent("Status"), false);
 			 }
 			}
 			
