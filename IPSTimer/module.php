@@ -21,7 +21,7 @@
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
-			$associations[] = ['Wert' => true, 'Name' => 'An', 'Farbe' => 0x0000FF];
+			$associations[] = ['Wert' => true, 'Name' => 'An', 'Farbe' => 00BFFF]; //Farbe Blau
 			$associations[] = ['Wert' => false, 'Name' => 'Aus', 'Farbe' => -1];
 			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);	
 			$this->RegisterVariableBoolean("Active", "Aktiv", "IPSTimer.AKTIV", 20);
