@@ -11,7 +11,7 @@
 			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
 			
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
-			$this->RegisterVariableBoolean("InputTriggerID", "gesetzt", "~Switch");
+			$this->RegisterVariableBoolean("InputTriggerID", "Status");
 			
             $this->EnableAction("Active");
         }
