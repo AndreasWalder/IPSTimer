@@ -26,7 +26,7 @@
 			
 			$associations = [];
 			$associations[] = ['Wert' => 1, 'Name' => 'Taster', 'Farbe' => 0xFFD700];
-			$associations[] = ['Wert' => 0, 'Name' => '', 'Farbe' => -1];
+			$associations[] = ['Wert' => 0, 'Name' => ' ', 'Farbe' => -1];
 			$this->CreateVarProfile('IPSTimer.TASTEN', 0, '', 0, 0, 1, 1, 'Power', $associations);			
 			$this->RegisterVariableBoolean("Tasten", "Tasten", "IPSTimer.TASTEN", 1);
 			
