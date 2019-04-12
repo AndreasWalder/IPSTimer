@@ -24,7 +24,7 @@
 			$associations[] = ['Wert' => true, 'Name' => 'An', 'Farbe' => 0x00BFFF]; //Farbe Blau
 			$associations[] = ['Wert' => false, 'Name' => 'Aus', 'Farbe' => -1];
 			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);	
-			$this->RegisterVariableBoolean("Active", "Aktiv", "IPSTimer.AKTIV", 20);
+			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);
 			
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
@@ -173,9 +173,11 @@
 				case "Schalten":
 				    	
 				    if (!GetValue($this->GetIDForIdent("Active"))){
-					 $this->SwitchVariable(false);
-				     SetValue($this->GetIDForIdent("Schalten"), false);
-                     return;
+						$this->SetTimerInterval("OffTimer", 0);
+			            SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
+					// $this->SwitchVariable(false);
+				    // SetValue($this->GetIDForIdent("Schalten"), false);
+                    // return;
                     }
 					
 				    $this->SwitchVariable($Value);
