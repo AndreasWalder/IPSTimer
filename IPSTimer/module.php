@@ -76,7 +76,10 @@
         public function RequestAction($Ident, $Value) {
             switch($Ident) {
                 case "Active":
+				
                     $this->SetActive($Value);
+					
+					
 					
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("InputTriggerID"));
                     if ($EreignisID === false)
@@ -122,6 +125,10 @@
         }
         
         public function SetActive(bool $Value) {
+			if ($Value == false) {
+		      $this->SwitchVariable(false);
+			}
+			
             SetValue($this->GetIDForIdent("Active"), $Value);
         }
         
