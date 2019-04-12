@@ -9,8 +9,8 @@
             $this->RegisterPropertyInteger("Duration", 1);
             $this->RegisterPropertyInteger("OutputID", 0);
 			
-			$this->RegisterPropertyInteger("SchalterEnable", 1);
-            $this->RegisterPropertyInteger("TasterEnable", 1);
+			$this->RegisterPropertyBoolean ("SchalterEnable", false);
+            $this->RegisterPropertyBoolean ("TasterEnable", false);
 			
 			// Erstellt einen Timer mit dem Namen und einem Intervall und ein Ziel. 
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
