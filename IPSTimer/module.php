@@ -366,6 +366,7 @@
             $object = IPS_GetObject($outputID);
             $variable = IPS_GetVariable($outputID);
             $actionID = $this->GetProfileAction($variable);
+			SetValue($this->GetIDForIdent("Taster"), $Value); 	
             //Quit if actionID is not a valid target
             if($actionID < 10000){
                 echo $this->Translate("Die Ausgabevariable hat keine Variablenaktion! (Aktion hinzufügen)");
