@@ -157,6 +157,7 @@
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			$this->SetTimerInterval("Update", 60 * 1000);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
+			SetValue($this->GetIDForIdent("Schalten"), true);
         }
 		
         public function Stop(){
@@ -164,6 +165,7 @@
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
+			SetValue($this->GetIDForIdent("Schalten"), false);
         }
 		
 		public function Update(){
