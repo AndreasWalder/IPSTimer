@@ -15,7 +15,7 @@
 			$associations[] = ['Wert' => 1, 'Name' => 'An'];
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
-			$this->RegisterVariableBoolean("Status", "Timer Status", "IPSTimer.STATUS", 10);
+			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 5);
 			
 			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 0);
 			
@@ -67,7 +67,7 @@
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.TIMER', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
-			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 5);
+			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 10);
 			$triggerID = $this->GetIDForIdent("Status");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
@@ -102,7 +102,7 @@
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Status" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("Status"), 0, false);
-					IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
+					//IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
 					IPS_SetParent($eidan, $this->GetIDForIdent("Status"));                  //Ereigniss zuordnen zu Variable "Status"  
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					IPS_SetIdent($eidan, "IPSTimerEventAn");
@@ -119,7 +119,7 @@
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Status" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("Status"), 0, true);
-					IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
+					//IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
 					IPS_SetParent($eidaus, $this->GetIDForIdent("Status"));                  //Ereigniss zuordnen zu Variable "Status"
 					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen					
 					IPS_SetIdent($eidaus, "IPSTimerEventOFF");
@@ -136,7 +136,7 @@
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Schalten" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("Schalten"), 0, false);
-					IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
+					//IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
 					IPS_SetParent($eidan, $this->GetIDForIdent("Schalten"));                  //Ereigniss zuordnen zu Variable "Schalten" 
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen					
 					IPS_SetIdent($eidan, "IPSTimerSchaltenAn");
@@ -153,7 +153,7 @@
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Schalten" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("Schalten"), 0, true);
-					IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
+					//IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
 					IPS_SetParent($eidaus, $this->GetIDForIdent("Schalten"));                  //Ereigniss zuordnen zu Variable "Schalten" 
 					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen					
 					IPS_SetIdent($eidaus, "IPSTimerSchaltenAus");
