@@ -10,14 +10,14 @@
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
 			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
 			
-            $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
-			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
 			$associations[] = ['Wert' => 1, 'Name' => 'Ein'];
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
 			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS");
+			
+            $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			
             $this->EnableAction("Active");
         }
