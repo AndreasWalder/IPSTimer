@@ -21,8 +21,8 @@
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
 			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 5);
 			
-			$this->RegisterVariableBoolean("Schalten", "Schalten", "IPSTimer.STATUS", 0);
-			$this->RegisterVariableBoolean("Tasten", "Tasten", "Status", 1);
+			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 0);
+			$this->RegisterVariableBoolean("Tasten", "Tasten", "IPSTimer.STATUS", 1);
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
