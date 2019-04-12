@@ -55,7 +55,7 @@
 			
 			$this->EnableAction("Dauer");	
             $this->EnableAction("Schalten");
-			$this->EnableAction("Tasten");
+			$this->EnableAction("Taster");
 			$this->EnableAction("Active");
 			
         }
