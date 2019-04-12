@@ -9,8 +9,10 @@
             $this->RegisterPropertyInteger("Duration", 1);
             $this->RegisterPropertyInteger("OutputID", 0);
 			
+			// Erstellt einen Timer mit dem Namen und einem Intervall und ein Ziel. 
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
 			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
+			$this->RegisterTimer("CheckEvent", 1000, "TIMER_CheckEvent(\$_IPS['TARGET']);");
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
@@ -47,6 +49,7 @@
 			$this->EnableAction("Dauer");	
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
+			
         }
 		
 		
@@ -256,6 +259,21 @@
 			$UpdateTimer = GetValue($this->GetIDForIdent("Ablaufzeit"));
 			$UpdateTimer = $UpdateTimer - 1;
             SetValue($this->GetIDForIdent("Ablaufzeit"), $UpdateTimer);
+        }
+		
+		public function CheckEvent(){
+			if (GetValue($this->ReadPropertyInteger("OutputID")) == true) {
+			 if (GetValue($this->ReadPropertyInteger("Schalten")) == false) {
+			   SetValue($this->GetIDForIdent("Schalten"), true);
+			 }
+			}
+			
+			if (GetValue($this->ReadPropertyInteger("OutputID")) == false) {
+			 if (GetValue($this->ReadPropertyInteger("Schalten")) == true) {
+			   SetValue($this->GetIDForIdent("Schalten"), false);
+			 }
+			}
+			
         }
 		
 		
