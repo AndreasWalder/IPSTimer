@@ -12,7 +12,7 @@
 			// Erstellt einen Timer mit dem Namen und einem Intervall und ein Ziel. 
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
 			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
-			$this->RegisterTimer("CheckEvent", 1000, "TIMER_CheckEvent(\$_IPS['TARGET']);");
+			$this->RegisterTimer("CheckEvent", 500, "TIMER_CheckEvent(\$_IPS['TARGET']);");
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
@@ -118,7 +118,8 @@
                 case "Active":
 				
                     $this->SetActive($Value);
-										
+							
+                    /*							
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("Status"));
                     if ($EreignisID === false)
 					{
@@ -188,7 +189,7 @@
 					IPS_SetName($eidaus, "IPSTimerSchaltenAus");								         //Name dem Event zuordnen
 					IPS_SetEventActive($eidaus, true);          								   	    //Ereignis aktivieren
 					}
-							
+					*/		
                     break;
 					
 				case "Schalten":
