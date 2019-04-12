@@ -73,7 +73,7 @@
 			
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
 			
-			$this->RegisterVariableString("Dauer", $this->ReadPropertyInteger("Duration"), "~TextBox", 30);
+			$this->RegisterVariableInteger("Dauer", $this->ReadPropertyInteger("Duration"), "", 30);
 			$this->EnableAction("Dauer");
         }
 		
