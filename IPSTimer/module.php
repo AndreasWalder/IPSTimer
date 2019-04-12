@@ -263,13 +263,13 @@
 		
 		public function CheckEvent(){
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == true) {
-			 if (GetValue($this->ReadPropertyInteger("Schalten")) == false) {
+			 if (GetValue($this->GetIDForIdent("Schalten")) == false) {
 			   SetValue($this->GetIDForIdent("Schalten"), true);
 			 }
 			}
 			
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == false) {
-			 if (GetValue($this->ReadPropertyInteger("Schalten")) == true) {
+			 if (GetValue($this->GetIDForIdent("Schalten")) == true) {
 			   SetValue($this->GetIDForIdent("Schalten"), false);
 			 }
 			}
