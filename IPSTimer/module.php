@@ -26,12 +26,9 @@
 			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);	
 			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);
 			
-			$this->RegisterVariableInteger("Dauer", "Dauer", "", 30);
-			
 			
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
-			$this->EnableAction("Dauer");
         }
 		
 		
@@ -74,6 +71,9 @@
 			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 10);
 			$triggerID = $this->GetIDForIdent("Status");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
+			
+			$this->RegisterVariableInteger("Dauer", "Dauer", "IPSTimer.TIMER", 30);
+			$this->EnableAction("Dauer");
 			
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
 			SetValue($this->GetIDForIdent("Dauer"), $this->ReadPropertyInteger("Duration"));
@@ -187,8 +187,7 @@
 					
 				case "Dauer":
 				 
-					//SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Dauer")));
-					//SetValue($this->WriteAttributeInteger("Duration"), GetValue($this->GetIDForIdent("Dauer")));
+					SetValue($this->GetIDForIdent("Dauer"), $value);
 				
 					break;
 					
