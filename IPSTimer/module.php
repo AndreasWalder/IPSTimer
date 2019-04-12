@@ -15,9 +15,9 @@
 			$associations[] = ['Wert' => 1, 'Name' => 'An'];
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
-			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 10);
+			$this->RegisterVariableBoolean("Status", "Timer Status", "IPSTimer.STATUS", 10);
 			
-			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 15);
+			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 0);
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
@@ -67,7 +67,7 @@
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.TIMER', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
-			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER");
+			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 5);
 			$triggerID = $this->GetIDForIdent("Status");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
