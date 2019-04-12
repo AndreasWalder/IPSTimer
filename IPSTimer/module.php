@@ -18,7 +18,7 @@
 			
 			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS", 10);
 			
-            $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
+            $this->RegisterVariableBoolean("Active", "aktiv", "~Switch", 15);
 			
             $this->EnableAction("Active");
         }
