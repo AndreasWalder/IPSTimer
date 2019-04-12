@@ -21,7 +21,8 @@
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
 			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 5);
 			
-			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 0);
+			$this->RegisterVariableBoolean("Schalten", "Schalten", "IPSTimer.STATUS", 0);
+			$this->RegisterVariableBoolean("Tasten", "Tasten", "Status", 1);
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
 			$associations = [];
@@ -48,6 +49,7 @@
 			
 			$this->EnableAction("Dauer");	
             $this->EnableAction("Schalten");
+			$this->EnableAction("Tasten");
 			$this->EnableAction("Active");
 			
         }
@@ -204,6 +206,18 @@
 					
 				    $this->SwitchVariable($Value);
 				    SetValue($this->GetIDForIdent("Schalten"), $Value);
+					break;
+					
+				case "Tasten":
+				
+				    $this->SetTimerInterval("CheckEvent", 300);
+				    	
+				    if (!GetValue($this->GetIDForIdent("Active"))){			
+			            SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
+                       }
+					
+				    $this->SwitchVariable($Value);
+				    SetValue($this->GetIDForIdent("Tasten"), $Value);
 					break;
 					
 				case "Dauer":
