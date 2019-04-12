@@ -101,7 +101,6 @@
 			   SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
 			}
 			
-            //$triggerID = $this->ReadVariableBoolean("Status");
 			$triggerID = $this->GetIDForIdent("Status");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
@@ -117,18 +116,18 @@
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("Status"));
                     if ($EreignisID === false)
 					{
-					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis 		
-					IPS_SetEventTrigger($eidan, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
-					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
+					$eidan = IPS_CreateEvent(0);                									  	//Ausgelöstes Ereignis 		
+					IPS_SetEventTrigger($eidan, 4, $this->ReadPropertyInteger("OutputID"));         	//Bei Änderung von Variable mit ID 15754
+					IPS_SetEventTriggerValue($eidan, true);		                                  		//Nur auf TRUE Werte auslösen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Status" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("Status"), 0, false);
 					//IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
-					IPS_SetParent($eidan, $this->GetIDForIdent("Status"));                  //Ereigniss zuordnen zu Variable "Status"  
-					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
-					IPS_SetIdent($eidan, "IPSTimerEventAn");
-					IPS_SetName($eidan, "IPSTimerEventAn");								              //Name dem Event zuordnen
-					IPS_SetEventActive($eidan, true);          								      //Ereignis aktivieren
+					IPS_SetParent($eidan, $this->GetIDForIdent("Status"));                  			//Ereigniss zuordnen zu Variable "Status"  
+					IPS_SetEventTriggerValue($eidan, true);		                                	    //Nur auf TRUE Werte auslösen
+					IPS_SetIdent($eidan, "IPSTimerEventAn");											//Ident setzen internen Namen
+					IPS_SetName($eidan, "IPSTimerEventAn");								                //Name dem Event zuordnen
+					IPS_SetEventActive($eidan, true);          								     	    //Ereignis aktivieren
 					}
 					
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventOFF", $this->GetIDForIdent("Status"));
@@ -187,13 +186,9 @@
 					
 				case "Schalten":
 				    	
-				    if (!GetValue($this->GetIDForIdent("Active"))){
-						//$this->SetTimerInterval("OffTimer", 0);
+				    if (!GetValue($this->GetIDForIdent("Active"))){			
 			            SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
-					// $this->SwitchVariable(false);
-				    // SetValue($this->GetIDForIdent("Schalten"), false);
-                    // return;
-                    }
+                       }
 					
 				    $this->SwitchVariable($Value);
 				    SetValue($this->GetIDForIdent("Schalten"), $Value);
