@@ -1,5 +1,7 @@
 <?
     class IPSTimer extends IPSModule {
+		
+		//Wird beim Erstellen vom Modul aufgerufen
         public function Create()
         {
             //Never delete this line!
@@ -75,7 +77,7 @@
 			}
 		}
 		
-		
+		// Wird beim Ändern im Modul aufgerufen
         public function ApplyChanges() {
             //Never delete this line!
             parent::ApplyChanges();
@@ -107,6 +109,7 @@
             }
         }
 		
+		// Ausgelöste Action beim betätigen von Elementen in der Webfront
         public function RequestAction($Ident, $Value) {
             switch($Ident) {
                 case "Active":
@@ -131,6 +134,7 @@
 					}
 					
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventOFF", $this->GetIDForIdent("Status"));
+					
                     if ($EreignisID === false)
 					{
 					$eidaus = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis	
@@ -148,6 +152,7 @@
 					}
 					
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerSchaltenAn", $this->GetIDForIdent("Schalten"));
+					
                     if ($EreignisID === false)
 					{
 					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis 		
@@ -167,21 +172,20 @@
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerSchaltenAus", $this->GetIDForIdent("Schalten"));
                     if ($EreignisID === false)
 					{
-					$eidaus = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis	
-					IPS_SetEventTrigger($eidaus, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
-					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen
+					$eidaus = IPS_CreateEvent(0);                										  //Ausgelöstes Ereignis	
+					IPS_SetEventTrigger($eidaus, 4, $this->ReadPropertyInteger("OutputID"));       		  //Bei Änderung von Variable mit ID 15754
+					IPS_SetEventTriggerValue($eidaus, false);		                             	     //Nur auf false Werte auslösen
 					// Füge eine Regel mit der ID 2 hinzu: Variable "Schalten" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
                     IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("Schalten"), 0, true);
 					//IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
-					IPS_SetParent($eidaus, $this->GetIDForIdent("Schalten"));                  //Ereigniss zuordnen zu Variable "Schalten" 
-					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen					
+					IPS_SetParent($eidaus, $this->GetIDForIdent("Schalten"));               			   //Ereigniss zuordnen zu Variable "Schalten" 
+					IPS_SetEventTriggerValue($eidaus, false);		                         	         //Nur auf false Werte auslösen					
 					IPS_SetIdent($eidaus, "IPSTimerSchaltenAus");
-					IPS_SetName($eidaus, "IPSTimerSchaltenAus");								              //Name dem Event zuordnen
-					IPS_SetEventActive($eidaus, true);          								      //Ereignis aktivieren
+					IPS_SetName($eidaus, "IPSTimerSchaltenAus");								         //Name dem Event zuordnen
+					IPS_SetEventActive($eidaus, true);          								   	    //Ereignis aktivieren
 					}
-					
-					
+							
                     break;
 					
 				case "Schalten":
@@ -196,8 +200,7 @@
 					
 				case "Dauer":
 				 
-					$this->SetValueDauer($Value);
-				
+					$this->SetValueDauer($Value);				
 					break;
 					
                 default:
@@ -208,13 +211,12 @@
         public function SetActive(bool $Value) {
 			if ($Value == false) {
 		      $this->SwitchVariable(false);
-			}
-			
+			}		
             SetValue($this->GetIDForIdent("Active"), $Value);
         }
 		
-		public function SetValueDauer(int $Value) {
-			
+		
+		public function SetValueDauer(int $Value) {		
             SetValue($this->GetIDForIdent("Dauer"), $Value);
         }
 		
@@ -229,13 +231,13 @@
 			$duration = GetValue($this->GetIDForIdent("Dauer"));
 			}
 			
-			
-            $this->SwitchVariable(true);
+	        $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			$this->SetTimerInterval("Update", 60 * 1000);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $duration);
 			SetValue($this->GetIDForIdent("Schalten"), true);
         }
+		
 		
         public function Stop(){
 			SetValue($this->GetIDForIdent("Status"), false);
@@ -244,6 +246,7 @@
 			SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
 			SetValue($this->GetIDForIdent("Schalten"), false);
         }
+		
 		
 		public function Update(){
 			if (GetValue($this->GetIDForIdent("Ablaufzeit")) == 0) {
@@ -254,6 +257,7 @@
 			$UpdateTimer = $UpdateTimer - 1;
             SetValue($this->GetIDForIdent("Ablaufzeit"), $UpdateTimer);
         }
+		
 		
         private function SwitchVariable(bool $Value){
             $outputID = $this->ReadPropertyInteger("OutputID");
@@ -287,6 +291,8 @@
                 echo IPS_RunScriptWaitEx($actionID, Array("VARIABLE" => $outputID, "VALUE" => $actionValue));
             }
         }
+		
+		
         private function GetProfileName($variable){
             if($variable['VariableCustomProfile'] != ""){
                 return $variable['VariableCustomProfile'];
@@ -294,6 +300,8 @@
                 return $variable['VariableProfile'];
             }
         }
+		
+		
         private function GetProfileAction($variable){
             if($variable['VariableCustomAction'] > 0){
                 return $variable['VariableCustomAction'];
