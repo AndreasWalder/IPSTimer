@@ -27,6 +27,11 @@
 
 			
 			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);	
+			
+			$associations = '';
+			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
+			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
+			$this->CreateVarProfile('IPSTimer.TIMER', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);
 			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 10);
 			
 			
