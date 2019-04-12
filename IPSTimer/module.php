@@ -182,7 +182,7 @@
 					break;
 					
 				case "Dauer":
-					SetValue($this->GetIDForIdent("Duration"), GetValue($this->GetIDForIdent("Dauer")));
+					SetValue($this->ReadPropertyInteger("Duration"), GetValue($this->GetIDForIdent("Dauer")));
 				
 					break;
 					
