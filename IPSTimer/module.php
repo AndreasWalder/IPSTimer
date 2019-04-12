@@ -244,7 +244,7 @@
 						SetValue($this->GetIDForIdent("Taster"), false);
 						$this->SwitchVariable(false);
                        }
-					   else {
+					else {
 						   
 					    SetValue($this->GetIDForIdent("Taster"), true); 
                         $this->SwitchVariable(true);						
@@ -318,16 +318,21 @@
 		public function CheckEvent(){
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == true) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == false) {
-			   SetValue($this->GetIDForIdent("Schalten"), true);			   
+			   SetValue($this->GetIDForIdent("Schalten"), true);	
+               SetValue($this->GetIDForIdent("Status"), true);
+			   SetValue($this->GetIDForIdent("Taster"), true); 			   
 			 }
 			}
 			
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == false) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == true) {
-			   SetValue($this->GetIDForIdent("Schalten"), false);		   
+			   SetValue($this->GetIDForIdent("Schalten"), false);	
+               SetValue($this->GetIDForIdent("Status"), false);
+			   SetValue($this->GetIDForIdent("Taster"), false); 			   
 			 }
 			}
 			
+			/*
 			if (GetValue($this->GetIDForIdent("Schalten")) == false) {
 			  SetValue($this->GetIDForIdent("Status"), false);
 			  SetValue($this->GetIDForIdent("Taster"), false); 
@@ -336,7 +341,7 @@
 			  SetValue($this->GetIDForIdent("Status"), true);
 			  SetValue($this->GetIDForIdent("Taster"), true); 
 			}
-			
+			*/
 		}
 		
 		
