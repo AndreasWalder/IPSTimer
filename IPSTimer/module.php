@@ -313,9 +313,11 @@
 			
 			if (GetValue($this->GetIDForIdent("Schalten")) == false) {
 			  SetValue($this->GetIDForIdent("Status"), false);
+			  SetValue($this->GetIDForIdent("Taster"), false); 
 			}
 			else{
 			  SetValue($this->GetIDForIdent("Status"), true);
+			  SetValue($this->GetIDForIdent("Taster"), true); 
 			}
 			
 		}
