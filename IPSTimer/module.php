@@ -108,7 +108,7 @@
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
 			SetValue($this->GetIDForIdent("Dauer"), $this->ReadPropertyInteger("Duration"));
 			
-			/*
+			
 			if ($this->ReadPropertyInteger("SchalterEnable")) {
 			   IPS_SetHidden($this->GetIDForIdent("Schalten"), true); //Objekt verstecken
 			}
@@ -122,7 +122,7 @@
 			else {
 			   IPS_SetHidden($this->GetIDForIdent("Taster"), false); //Objekt anzeigen
 			}
-			*/
+			
         }
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
