@@ -109,14 +109,14 @@
 			SetValue($this->GetIDForIdent("Dauer"), $this->ReadPropertyInteger("Duration"));
 			
 			
-			if ($this->RegisterPropertyBoolean("SchalterEnable")) {
+			if (GetValue($this->RegisterPropertyBoolean("SchalterEnable"))) {
 			   IPS_SetHidden($this->GetIDForIdent("Schalten"), true); //Objekt verstecken
 			}
 			else {
 			   IPS_SetHidden($this->GetIDForIdent("Schalten"), false); //Objekt anzeigen
 			}
 			
-			if ($this->RegisterPropertyBoolean("TasterEnable")) {
+			if (GetValue($this->RegisterPropertyBoolean("TasterEnable"))) {
 			   IPS_SetHidden($this->GetIDForIdent("Taster"), true); //Objekt verstecken
 			}
 			else {
