@@ -184,7 +184,7 @@
 				case "Dauer":
 				 
 					//SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Dauer")));
-					SetValue($this->WriteAttributeInteger("Duration"), GetValue($this->GetIDForIdent("Dauer")));
+					//SetValue($this->WriteAttributeInteger("Duration"), GetValue($this->GetIDForIdent("Dauer")));
 				
 					break;
 					
@@ -207,6 +207,12 @@
                 return;
             }
             $duration = $this->ReadPropertyInteger("Duration");
+			
+			If ($duration <> GetValue($this->GetIDForIdent("Dauer"))) {
+			$duration = GetValue($this->GetIDForIdent("Dauer"));
+			}
+			
+			
             $this->SwitchVariable(true);
             $this->SetTimerInterval("OffTimer", $duration * 60 * 1000);
 			$this->SetTimerInterval("Update", 60 * 1000);
