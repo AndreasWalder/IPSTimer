@@ -276,8 +276,7 @@
 			   SetValue($this->GetIDForIdent("Status"), false);
 			 }
 			}
-			
-        }
+		}
 		
 		
         private function SwitchVariable(bool $Value){
