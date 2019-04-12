@@ -10,7 +10,7 @@
             $this->RegisterPropertyInteger("OutputID", 0);
 			
 			$this->RegisterPropertyInteger("SchalterEnable", 1);
-            $this->RegisterPropertyInteger("TasterEnable", 0);
+            $this->RegisterPropertyInteger("TasterEnable", 1);
 			
 			// Erstellt einen Timer mit dem Namen und einem Intervall und ein Ziel. 
             $this->RegisterTimer("OffTimer", 0, "TIMER_Stop(\$_IPS['TARGET']);");
@@ -109,14 +109,14 @@
 			SetValue($this->GetIDForIdent("Dauer"), $this->ReadPropertyInteger("Duration"));
 			
 			
-			if (GetValue($this->ReadPropertyInteger("SchalterEnable"))) {
+			if ($this->ReadPropertyInteger("SchalterEnable")) {
 			   IPS_SetHidden($this->GetIDForIdent("Schalten"), true); //Objekt verstecken
 			}
 			else {
 			   IPS_SetHidden($this->GetIDForIdent("Schalten"), false); //Objekt anzeigen
 			}
 			
-			if (GetValue($this->ReadPropertyInteger("TasterEnable"))) {
+			if ($this->ReadPropertyInteger("TasterEnable")) {
 			   IPS_SetHidden($this->GetIDForIdent("Taster"), true); //Objekt verstecken
 			}
 			else {
