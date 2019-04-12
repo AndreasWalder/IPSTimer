@@ -269,17 +269,23 @@
 		public function CheckEvent(){
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == true) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == false) {
-			   SetValue($this->GetIDForIdent("Schalten"), true);
-			   SetValue($this->GetIDForIdent("Status"), true);
+			   SetValue($this->GetIDForIdent("Schalten"), true);			   
 			 }
 			}
 			
 			if (GetValue($this->ReadPropertyInteger("OutputID")) == false) {
 			 if (GetValue($this->GetIDForIdent("Schalten")) == true) {
-			   SetValue($this->GetIDForIdent("Schalten"), false);
-			   SetValue($this->GetIDForIdent("Status"), false);
+			   SetValue($this->GetIDForIdent("Schalten"), false);		   
 			 }
 			}
+			
+			if (GetValue($this->GetIDForIdent("Schalten")) == false) {
+			  SetValue($this->GetIDForIdent("Status"), false);
+			}
+			else{
+			  SetValue($this->GetIDForIdent("Status"), true);
+			}
+			
 		}
 		
 		
