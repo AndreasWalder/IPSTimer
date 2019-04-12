@@ -119,7 +119,7 @@
 				
                     $this->SetActive($Value);
 					
-					
+					$this->SetTimerInterval("CheckEvent", 300);
 							
                     /*							
 					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("Status"));
@@ -196,7 +196,7 @@
 					
 				case "Schalten":
 				
-				    $this->SetTimerInterval("CheckEvent", 500);
+				    $this->SetTimerInterval("CheckEvent", 300);
 				    	
 				    if (!GetValue($this->GetIDForIdent("Active"))){			
 			            SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
