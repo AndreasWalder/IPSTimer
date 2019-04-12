@@ -14,7 +14,9 @@ Modul für IP-Symcon ab Version 5.0
 
 ## 1. Funktionsumfang
 
-
+ - IPSTimer zum automatischen Abschalten von Geräten nach eingestellter Zeit
+ - Ablaufzeit wird in der Webfront angezeigt
+ - Timer kann aktiviert und deaktiviert werden
 
 
 ## 2. Voraussetzungen
@@ -32,7 +34,7 @@ In der _Modules_ Instanz rechts oben auf den Button __*Hinzufügen*__ drücken.
 
 In dem sich öffnenden Fenster folgende URL hinzufügen:
 
-`https://github.com/AndreasWalder/IPSDeviceOnlineService.git`
+`https://github.com/AndreasWalder/IPSTimer.git`
 
 und mit _OK_ bestätigen.
 
@@ -40,11 +42,9 @@ Anschließend erscheint ein Eintrag für das Modul in der Liste der Instanz _Mod
 
 ### b. Einrichtung in IPS
 
-In IP-Symcon nun Instanz hinzufügen_ (_CTRL+1_) auswählen unter der Kategorie, unter der man die Instanz hinzufügen will, und Hersteller _(sonstiges)_ und als Gerät _IPSDeviceOnlineService_ auswählen.
+In IP-Symcon nun Instanz hinzufügen_ (_CTRL+1_) auswählen unter der Kategorie, unter der man die Instanz hinzufügen will, und Hersteller _(sonstiges)_ und als Gerät _IPSTimer_ auswählen.
 
-Dann muss man die IP-Adresse, den Namen des Gerätes und die MacAdresse für die genaue Bestimmung des Gerätes eintragen und das Gerät aktiv schalten.
-
-Intervall Zeit kann geändert werden Standart 5 Min.
+Achtung "Ereignisse kontrollieren und richtingen Wert setztn (TRUE/FALSE)"!!
 
 
 ## 4. Konfiguration:
@@ -53,18 +53,9 @@ Intervall Zeit kann geändert werden Standart 5 Min.
 
 | Eigenschaft               | Typ      | Standardwert | Beschreibung |
 | :-----------------------: | :-----:  | :----------: | :----------------------------------------------------------------------------------------------------------: |
-| Device1                   | integer  |              | beliebiger Gerätenamen Namen für Statusanzeige |
-| Device2                   | integer  |              | beliebiger Gerätenamen Namen für Statusanzeige |
-| Device3                   | integer  |              | beliebiger Gerätenamen Namen für Statusanzeige |
-| Device4                   | integer  |              | beliebiger Gerätenamen Namen für Statusanzeige |
+| Variable zum Schalten     | integer  |              | Wert des schaltenden Objekts                   |
+| Dauer                     | integer  |      0 min   | Abschaltzeit in Minunten                       |
 
-
-### Schaltflächen
-
-| Bezeichnung                  | Beschreibung |
-| :--------------------------: | :------------------------------------------------: |
-| Debug                        | zum Herausfinden der MacAdresse                    |
-| Update                       | zum probieren des Instanz Modules                  |
 
 
 ## 5. Anhang
