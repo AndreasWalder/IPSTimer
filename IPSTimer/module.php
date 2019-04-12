@@ -23,12 +23,17 @@
 			$associations = [];
 			$associations[] = ['Wert' => true, 'Name' => 'An', 'Farbe' => 0x00BFFF]; //Farbe Blau
 			$associations[] = ['Wert' => false, 'Name' => 'Aus', 'Farbe' => -1];
-			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);	
-			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);
+			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);
+
 			
-			
+			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);	
 			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER", 10);
 			
+			
+			$associations = '';
+			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
+			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
+			$this->CreateVarProfile('IPSTimer.Dauer', 1, ' min', 0, 0, 0, 1, 'Clock', $associations);	
 			$this->RegisterVariableInteger("Dauer", "Dauer", "", 30);
 			
 			
