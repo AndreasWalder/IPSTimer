@@ -14,8 +14,9 @@
 			$associations = [];
 			$associations[] = ['Wert' => 1, 'Name' => 'Ein'];
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
-			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
-			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS");
+			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);	
+			
+			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS", 10);
 			
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			
