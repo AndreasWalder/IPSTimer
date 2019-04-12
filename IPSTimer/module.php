@@ -191,7 +191,7 @@
 					
 				case "Dauer":
 				 
-					$this->SetValue($Value);
+					$this->SetValueDauer($Value);
 				
 					break;
 					
@@ -208,7 +208,7 @@
             SetValue($this->GetIDForIdent("Active"), $Value);
         }
 		
-		public function SetValue(int $Value) {
+		public function SetValueDauer(int $Value) {
 			
             SetValue($this->GetIDForIdent("Dauer"), $Value);
         }
