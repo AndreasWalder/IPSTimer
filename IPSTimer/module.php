@@ -18,7 +18,7 @@
 			
 			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 10);
 			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 15);
-			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "~Switch", 20);
+			$this->RegisterVariableBoolean("Active", "Aktiv", "~Switch", 20);
 			
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
@@ -166,6 +166,12 @@
 					
 				case "Schalten":
 				    	
+				    if (!GetValue($this->GetIDForIdent("Active"))){
+					 $this->SwitchVariable(false);
+				     SetValue($this->GetIDForIdent("Schalten"), false);
+                     return;
+                    }
+					
 				    $this->SwitchVariable($Value);
 				    SetValue($this->GetIDForIdent("Schalten"), $Value);
 					break;
