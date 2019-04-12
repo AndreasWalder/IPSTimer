@@ -11,7 +11,13 @@
 			$this->RegisterTimer("Update", 0, "TIMER_Update(\$_IPS['TARGET']);");
 			
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
-			$this->RegisterVariableBoolean("InputTriggerID", "Status");
+			
+			//Erstellen eines Variablenprofile für Typ Boolean
+			$associations[];
+			$associations[] = ['Wert' => 1, 'Name' => 'Ein'];
+			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
+			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
+			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS");
 			
             $this->EnableAction("Active");
         }
@@ -52,8 +58,8 @@
 			$associations = '';
 			//$associations[] = ['Wert' => 1, 'Name' => 'Anwesend'];
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
-			$this->CreateVarProfile('IPSTimer.Status', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
-			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.Status");
+			$this->CreateVarProfile('IPSTimer.TIMER', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
+			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER");
 			$triggerID = $this->GetIDForIdent("InputTriggerID");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
