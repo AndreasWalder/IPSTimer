@@ -173,7 +173,7 @@
 				case "Schalten":
 				    	
 				    if (!GetValue($this->GetIDForIdent("Active"))){
-						$this->SetTimerInterval("OffTimer", 0);
+						//$this->SetTimerInterval("OffTimer", 0);
 			            SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
 					// $this->SwitchVariable(false);
 				    // SetValue($this->GetIDForIdent("Schalten"), false);
