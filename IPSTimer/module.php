@@ -191,7 +191,7 @@
 					
 				case "Dauer":
 				 
-					SetValue($this->GetIDForIdent("Dauer"), $value);
+					SetValue($this->GetIDForIdent("Dauer"), GetValue($this->GetIDForIdent("Dauer")));
 				
 					break;
 					
