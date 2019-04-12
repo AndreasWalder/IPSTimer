@@ -72,6 +72,9 @@
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
+			
+			$this->RegisterVariableString("Dauer", $this->ReadPropertyInteger("Duration"), "~TextBox", 30);
+			$this->EnableAction("Dauer");
         }
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
@@ -176,6 +179,11 @@
 					
 				    $this->SwitchVariable($Value);
 				    SetValue($this->GetIDForIdent("Schalten"), $Value);
+					break;
+					
+				case "Dauer":
+					SetValue($this->GetIDForIdent("Duration"), GetValue($this->GetIDForIdent("Dauer")));
+				
 					break;
 					
                 default:
