@@ -1,7 +1,15 @@
 {
     "elements":
     [
-        { "type": "SelectVariable", "name": "OutputID", "caption": "Variable zum Schalten" },
-        { "type": "NumberSpinner", "name": "Duration", "caption": "Dauer", "suffix": "min"}
+	    { "type": "Label", "caption": "Konfiguration IPS-Timer:" },
+		{ "type": "Label", "caption": "" },
+        { "type": "SelectVariable", "name": "OutputID", "caption": "Variable zum Schalten"},
+        { "type": "NumberSpinner", "name": "Duration", "caption": "Dauer", "suffix": "min"},
+		{ "type": "Label", "caption": "" },
+		{ "type": "Label", "caption": "" },
+		{ "type": "Label", "caption": "Style im Webfront:" },
+		{ "type": "Label", "caption": "" },
+		{ "type": "CheckBox", "name": "SchalterEnable", "caption": "auch Schalter anzeigen"},
+		{ "type": "CheckBox", "name": "TasterEnable", "caption": "auch Taster anzeigen"}
     ]
 }
