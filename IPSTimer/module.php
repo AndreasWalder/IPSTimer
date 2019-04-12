@@ -26,8 +26,12 @@
 			$this->CreateVarProfile('IPSTimer.AKTIV', 0, '', 0, 0, 1, 1, 'Power', $associations);	
 			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "IPSTimer.AKTIV", 20);
 			
+			$this->RegisterVariableInteger("Dauer", "Dauer", "", 30);
+			
+			
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
+			$this->EnableAction("Dauer");
         }
 		
 		
@@ -72,9 +76,9 @@
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
+			SetValue($this->GetIDForIdent("Dauer"), $this->ReadPropertyInteger("Duration"));
 			
-			$this->RegisterVariableInteger("Dauer", $this->ReadPropertyInteger("Duration"), "", 30);
-			$this->EnableAction("Dauer");
+			
         }
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
