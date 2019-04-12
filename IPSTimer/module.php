@@ -129,14 +129,9 @@
                     break;
 					
 				case "Schalten":
-				    $SchaltenID = $this->ReadPropertyInteger("Schalten");
-                    $object = IPS_GetObject($SchaltenID);
-                    $variable = IPS_GetVariable($SchaltenID);
-                    $actionID = $this->GetProfileAction($variable);
-					
-						
+				    	
 				    $this->SwitchVariable($Value);
-				
+				    SetValue($this->GetIDForIdent("Schalten"), $Value);
 					break;
 					
                 default:
