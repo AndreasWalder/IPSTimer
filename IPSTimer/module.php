@@ -332,6 +332,22 @@
 			 }
 			}
 			
+			if (GetValue($this->GetIDForIdent("Schalten")) == false) {
+			 if (GetValue($this->GetIDForIdent("Status")) == true) {
+			   $this->SwitchVariable(false);
+               SetValue($this->GetIDForIdent("Status"), false);
+			   SetValue($this->GetIDForIdent("Taster"), false); 			   
+			 }
+			}
+			
+			if (GetValue($this->GetIDForIdent("Schalten")) == true) {
+			 if (GetValue($this->GetIDForIdent("Status")) == false) {
+			   $this->SwitchVariable(true);
+               SetValue($this->GetIDForIdent("Status"), true);
+			   SetValue($this->GetIDForIdent("Taster"), true); 			   
+			 }
+			}
+			
 			/*
 			if (GetValue($this->GetIDForIdent("Schalten")) == false) {
 			  SetValue($this->GetIDForIdent("Status"), false);
