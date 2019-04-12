@@ -16,9 +16,9 @@
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);	
 			
-			$this->RegisterVariableBoolean("InputTriggerID", "Status", "IPSTimer.STATUS", 10);
-			
-            $this->RegisterVariableBoolean("Active", "aktiv", "~Switch", 15);
+			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 10);
+			$this->RegisterVariableBoolean("Wert", "Wert", "~Switch", 15);
+			$this->RegisterVariableBoolean("Active", "Aktiv", "~Switch", 20);
 			
             $this->EnableAction("Active");
         }
@@ -61,7 +61,7 @@
 			//$associations[] = ['Wert' => 0, 'Name' => 'Abwesend'];
 			$this->CreateVarProfile('IPSTimer.TIMER', 1, ' min', 0, $this->ReadPropertyInteger("Duration"), 0, 1, 'Clock', $associations);			
 			$this->RegisterVariableInteger("Ablaufzeit", "Ablaufzeit", "IPSTimer.TIMER");
-			$triggerID = $this->GetIDForIdent("InputTriggerID");
+			$triggerID = $this->GetIDForIdent("Status");
             $this->RegisterMessage($triggerID, 10603 /* VM_UPDATE */);
 			
 			SetValue($this->GetIDForIdent("Ablaufzeit"), $this->ReadPropertyInteger("Duration"));
@@ -69,12 +69,12 @@
 		
 		public function MessageSink ($TimeStamp, $SenderID, $Message, $Data) {
 			
-			if (!GetValue($this->GetIDForIdent("InputTriggerID"))) {
+			if (!GetValue($this->GetIDForIdent("Status"))) {
 			   SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
 			}
 			
-            //$triggerID = $this->ReadVariableBoolean("InputTriggerID");
-			$triggerID = $this->GetIDForIdent("InputTriggerID");
+            //$triggerID = $this->ReadVariableBoolean("Status");
+			$triggerID = $this->GetIDForIdent("Status");
             if (($SenderID == $triggerID) && ($Message == 10603) && (boolval($Data[0]))) {
                 $this->Start();
             }
@@ -88,36 +88,36 @@
 					
 					
 					
-					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("InputTriggerID"));
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventAn", $this->GetIDForIdent("Status"));
                     if ($EreignisID === false)
 					{
 					$eidan = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis 		
 					IPS_SetEventTrigger($eidan, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
-					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
+					// Füge eine Regel mit der ID 2 hinzu: Variable "Status" == true
 					IPS_SetEventCondition($eidan, 0, 0, 0);
-                    IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("InputTriggerID"), 0, false);
+                    IPS_SetEventConditionVariableRule($eidan, 0, 1, $this->GetIDForIdent("Status"), 0, false);
 					IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidan, true); 
-					IPS_SetParent($eidan, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
+					IPS_SetParent($eidan, $this->GetIDForIdent("Status"));                  //Ereigniss zuordnen zu Variable "Status"  
 					IPS_SetIdent($eidan, "IPSTimerEventAn");
 					IPS_SetName($eidan, "IPSTimerEventAn");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eidan, true);          								      //Ereignis aktivieren
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					}
 					
-					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventOFF", $this->GetIDForIdent("InputTriggerID"));
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerEventOFF", $this->GetIDForIdent("Status"));
                     if ($EreignisID === false)
 					{
 					$eidaus = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis	
 					IPS_SetEventTrigger($eidaus, 4, $this->ReadPropertyInteger("OutputID"));         //Bei Änderung von Variable mit ID 15754
 					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen
-					// Füge eine Regel mit der ID 2 hinzu: Variable "InputTriggerID" == true
+					// Füge eine Regel mit der ID 2 hinzu: Variable "Status" == true
 					IPS_SetEventCondition($eidaus, 0, 0, 0);
-                    IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("InputTriggerID"), 0, true);
+                    IPS_SetEventConditionVariableRule($eidaus, 0, 1, $this->GetIDForIdent("Status"), 0, true);
 					IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidaus, true); 
-					IPS_SetParent($eidaus, $this->GetIDForIdent("InputTriggerID"));                  //Ereigniss zuordnen zu Variable "InputTriggerID"  
+					IPS_SetParent($eidaus, $this->GetIDForIdent("Status"));                  //Ereigniss zuordnen zu Variable "Status"  
 					IPS_SetIdent($eidaus, "IPSTimerEventOFF");
 					IPS_SetName($eidaus, "IPSTimerEventOFF");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eidaus, true);          								      //Ereignis aktivieren
@@ -126,6 +126,12 @@
 					
 					
                     break;
+					
+				case "Wert":
+				    $this->SetWert($Value);
+				
+					break;
+					
                 default:
                     throw new Exception("Invalid ident");
             }
@@ -138,6 +144,17 @@
 			
             SetValue($this->GetIDForIdent("Active"), $Value);
         }
+		
+		public function SetWert(bool $Value) {
+			if ($Value == false) {
+		      $this->SwitchVariable(false);
+			}
+			else {
+			  $this->SwitchVariable(true);
+			}
+        }
+		
+		
         
         public function Start(){
             if (!GetValue($this->GetIDForIdent("Active"))){
@@ -151,7 +168,7 @@
         }
 		
         public function Stop(){
-			SetValue($this->GetIDForIdent("InputTriggerID"), false);
+			SetValue($this->GetIDForIdent("Status"), false);
             $this->SwitchVariable(false);
             $this->SetTimerInterval("OffTimer", 0);
 			SetValue($this->GetIDForIdent("Ablaufzeit"), 0);
