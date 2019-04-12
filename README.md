@@ -44,7 +44,7 @@ Anschließend erscheint ein Eintrag für das Modul in der Liste der Instanz _Mod
 
 In IP-Symcon nun Instanz hinzufügen_ (_CTRL+1_) auswählen unter der Kategorie, unter der man die Instanz hinzufügen will, und Hersteller _(sonstiges)_ und als Gerät _IPSTimer_ auswählen.
 
-Achtung "Ereignisse kontrollieren und richtingen Wert setztn (TRUE/FALSE)"!!
+Achtung "Ereignisse kontrollieren und richtingen Wert setzen (TRUE/FALSE)"!!
 
 
 ## 4. Konfiguration:
@@ -62,6 +62,4 @@ Achtung "Ereignisse kontrollieren und richtingen Wert setztn (TRUE/FALSE)"!!
 
 GUIDs
 - Modul: `{CB5A1DFA-6A35-36EC-5B97-E836850A9B61}
-- Instanzen:
-  - TestAndreas: `{746E1F5C-80D0-41A9-60CF-56B0AEEFAC08}
 
