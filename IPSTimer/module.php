@@ -137,13 +137,13 @@
 					IPS_SetEventConditionVariableRule($eidan, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidan, true); 
 					IPS_SetParent($eidan, $this->GetIDForIdent("Schalten"));                  //Ereigniss zuordnen zu Variable "Schalten"  
-					IPS_SetIdent($eidan, "IPSTimerEventAn");
-					IPS_SetName($eidan, "IPSTimerEventAn");								              //Name dem Event zuordnen
+					IPS_SetIdent($eidan, "IPSTimerSchaltenAn");
+					IPS_SetName($eidan, "IPSTimerSchaltenAn");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eidan, true);          								      //Ereignis aktivieren
 					IPS_SetEventTriggerValue($eidan, true);		                                  //Nur auf TRUE Werte auslösen
 					}
 					
-					$EreignisID = @IPS_GetEventIDByName("IPSTimercOFF", $this->GetIDForIdent("Schalten"));
+					$EreignisID = @IPS_GetEventIDByName("IPSTimerSchaltenAus", $this->GetIDForIdent("Schalten"));
                     if ($EreignisID === false)
 					{
 					$eidaus = IPS_CreateEvent(0);                									  //Ausgelöstes Ereignis	
@@ -155,8 +155,8 @@
 					IPS_SetEventConditionVariableRule($eidaus, 0, 2, $this->GetIDForIdent("Active"), 0, true);
                     IPS_SetEventTriggerSubsequentExecution($eidaus, true); 
 					IPS_SetParent($eidaus, $this->GetIDForIdent("Schalten"));                  //Ereigniss zuordnen zu Variable "Schalten"  
-					IPS_SetIdent($eidaus, "IPSTimerEventOFF");
-					IPS_SetName($eidaus, "IPSTimerEventOFF");								              //Name dem Event zuordnen
+					IPS_SetIdent($eidaus, "IPSTimerSchaltenAus");
+					IPS_SetName($eidaus, "IPSTimerSchaltenAus");								              //Name dem Event zuordnen
 					IPS_SetEventActive($eidaus, true);          								      //Ereignis aktivieren
 					IPS_SetEventTriggerValue($eidaus, false);		                                  //Nur auf false Werte auslösen
 					}
