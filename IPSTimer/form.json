@@ -9,7 +9,7 @@
 		{ "type": "Label", "caption": "" },
 		{ "type": "Label", "caption": "Style im Webfront:" },
 		{ "type": "Label", "caption": "" },
-		{ "type": "CheckBox", "name": "SchalterEnable", "caption": "auch Schalter anzeigen"},
-		{ "type": "CheckBox", "name": "TasterEnable", "caption": "auch Taster anzeigen"}
+		{ "type": "CheckBox", "name": "SchalterEnable", "caption": "Schalter nicht anzeigen"},
+		{ "type": "CheckBox", "name": "TasterEnable", "caption": "Taster nicht anzeigen"}
     ]
 }
