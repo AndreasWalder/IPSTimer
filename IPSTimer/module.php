@@ -13,7 +13,7 @@
             $this->RegisterVariableBoolean("Active", "aktiv", "~Switch");
 			
 			//Erstellen eines Variablenprofile für Typ Boolean
-			$associations[];
+			$associations = [];
 			$associations[] = ['Wert' => 1, 'Name' => 'Ein'];
 			$associations[] = ['Wert' => 0, 'Name' => 'Aus'];
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);			
