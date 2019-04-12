@@ -18,7 +18,7 @@
 			
 			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 10);
 			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 15);
-			$this->RegisterVariableBoolean("Active", "Aktiv", "~Switch", 20);
+			$this->RegisterVariableBoolean("Active", "Timer Aktiv", "~Switch", 20);
 			
             $this->EnableAction("Schalten");
 			$this->EnableAction("Active");
@@ -129,6 +129,12 @@
                     break;
 					
 				case "Schalten":
+				    $SchaltenID = $this->ReadPropertyInteger("Schalten");
+                    $object = IPS_GetObject($SchaltenID);
+                    $variable = IPS_GetVariable($SchaltenID);
+                    $actionID = $this->GetProfileAction($variable);
+					
+						
 				    $this->SwitchVariable($Value);
 				
 					break;
