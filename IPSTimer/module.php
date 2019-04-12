@@ -183,7 +183,7 @@
 					
 				case "Dauer":
 				 
-					SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Dauer")));
+					//SetValue($this->GetIDForIdent("Ablaufzeit"), GetValue($this->GetIDForIdent("Dauer")));
 					SetValue($this->WriteAttributeInteger("Duration"), GetValue($this->GetIDForIdent("Dauer")));
 				
 					break;
