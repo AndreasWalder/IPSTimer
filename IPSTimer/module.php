@@ -17,10 +17,11 @@
 			$this->CreateVarProfile('IPSTimer.STATUS', 0, '', 0, 0, 1, 1, 'Information', $associations);	
 			
 			$this->RegisterVariableBoolean("Status", "Status", "IPSTimer.STATUS", 10);
-			$this->RegisterVariableBoolean("Wert", "Wert", "~Switch", 15);
+			$this->RegisterVariableBoolean("Schalten", "Schalten", "~Switch", 15);
 			$this->RegisterVariableBoolean("Active", "Aktiv", "~Switch", 20);
 			
-            $this->EnableAction("Active");
+            $this->EnableAction("Schalten");
+			$this->EnableAction("Active");
         }
 		
 		
@@ -127,8 +128,8 @@
 					
                     break;
 					
-				case "Wert":
-				    $this->SetWert($Value);
+				case "Schalten":
+				    $this->SwitchVariable($Value);
 				
 					break;
 					
@@ -144,16 +145,6 @@
 			
             SetValue($this->GetIDForIdent("Active"), $Value);
         }
-		
-		public function SetWert(bool $Value) {
-			if ($Value == false) {
-		      $this->SwitchVariable(false);
-			}
-			else {
-			  $this->SwitchVariable(true);
-			}
-        }
-		
 		
         
         public function Start(){
